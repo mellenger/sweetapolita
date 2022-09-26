@@ -1,0 +1,105 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% assign results_box_width = '242px' %}
+{% assign results_box_background_color = '#ffffff' %}
+{% assign results_box_border_color = '#d4d4d4' %}
+<script>
+        var jQuery_1_3_2 = $.noConflict(true);
+         
+          var preLoadLoadGif = $('<img src="{{ 'ajax-load.gif' | asset_url }}" />');
+          var searchTimeoutThrottle = 500;
+          var searchTimeoutID = -1;
+          var currReqObj = null;
+          var collection = 'collections'; 
+          var $mainbox = $('.util-area');  
+         var product_count = 0;
+          
+         var $products_box = $('<div class="products_box" />').appendTo('.util-area');
+         var $page_box = $('<div class="page_box" />').appendTo('.util-area');
+          $mainbox.hide();
+          $('body').click(function (event) 
+          {
+             if(!$(event.target).closest($mainbox).length && !$(event.target).is($mainbox)) {
+               $mainbox.hide();  
+             }     
+          });
+          $('.predictive-search').bind('keyup change', function(){
+          //$mainbox.hide();  
+          if($(this).val().length > 0 && $(this).val() != $(this).data('oldval')) {
+                  
+                  $(this).data('oldval', $(this).val());
+                  product_count = 0;
+                  page_count = 0;
+            
+                  if(currReqObj != null) currReqObj.abort();
+
+                  clearTimeout(searchTimeoutID);
+
+
+                  var term = $(this).val() ;
+
+            	
+                 $products_box.html('<div class="load"></div>');
+                 $page_box.html('<div class="load"></div>');
+
+                  searchTimeoutID = setTimeout(function(){
+                    
+                    	$products_box.empty();
+                         $page_box.empty();
+                    	 var q = term;
+     					 var b = '&resources[type]=product,page,article';
+                    	 q=q.toLowerCase();
+                    	 {% paginate collections.all.products by 1000 %}
+                    		 var $mainrow = $('<div class="main-product-box"></div>');
+							{%- for my_product in collections.all.products -%}
+                    			var prtitle='{{my_product.title | replace: "'", "" }}';
+                                prtitle=prtitle.toLowerCase();
+                                
+                                var found = false;
+                                var arptitle = prtitle.split(' ');
+                                if ( arptitle.indexOf(q)!== -1) {	
+                                  console.log(arptitle + " @@@  " +q)
+                    			  found = true;
+                                }
+                                var tags=[];
+                                {% for tag in my_product.tags %}
+                                  if(q == '{{ tag | replace : "'","" | downcase }}'){
+                                    found = true;
+                                  }
+                                  tags.push('{{ tag | replace : "'","" | downcase }}');
+                                {% endfor %}
+                                //if(tags.findIndex(e => e.includes(q))!== -1) {
+                                //  found = true;
+                                //}       
+                                if(found){    
+                                  
+                                      var $row = $('<a></a>').attr('href', '{{my_product.url}}');
+                                      $row.append(`<div class="grid__cell"><img src="{{my_product.featured_image|img_url:'50x'}}" /><span>{{ my_product.title | replace : "'",""}}</span></div>`);
+                                      $mainrow.append($row); 
+                                 
+                                  product_count++;
+                                }
+                    
+                    		 {%- endfor -%}
+                    		 $products_box.append($mainrow);
+   						{%endpaginate%}
+                    
+                        $products_box.prepend('<div class="pro_head pro-title"><span class=""> Products </span></div>');
+
+                        if(product_count <=0 ){
+                          $mainbox.hide();
+                        }else{
+                          $mainbox.show();
+                        }
+                                
+
+                  }, searchTimeoutThrottle);
+              } else if ($(this).val().length <1) {
+            
+                  $products_box.empty();
+                  $page_box.empty();
+                 $mainbox.hide();
+                       
+              }
+          }).attr('autocomplete', 'off').data('oldval', '');         
+
+ </script>        

@@ -1,0 +1,142 @@
+{%- assign variantsDisplayed = 0 -%}
+{% assign el = 'product' %}
+{% assign add_to_cart = 'Add to cart' %}
+{% assign sold_out = 'Sold Out' %}
+{% assign unavailable = 'Unavailable' %}
+{% assign type = product.type | handleize %}
+
+<form class="{{ el }} {{ el }}--type-{{ type }}" itemscope itemtype="http://schema.org/Product" action="{{ routes.cart_url }}/add" method="post" enctype="multipart/form-data" data-cart-submit data-theme="{{ product.metafields.custom_fields.theme }}" {% if type == 'pre-build-box' %}data-hash='{{ product.metafields.custom_fields.pre-built_json | replace: '=>' , ':' }}'{% endif %}>
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
+  <meta itemprop="image" content="{{ product | img_url: 'grande' }}" />
+
+  {% if collection %}
+    <a href="{{ collection.url }}" class="{{ el }}__back icon icon-arrow-left">
+      Back to {{ collection.title }}
+    </a>
+  {% endif %}
+
+  {% assign product_vendor_handle = product.vendor | handle %}
+  {% if collections[product_vendor_handle].handle == product_vendor_handle %}
+    {% assign vendor_url = collections[product_vendor_handle].url %}
+  {% else %}
+    {% assign vendor_url = product.vendor | url_for_vendor %}
+  {% endif %}
+
+  <div class="{{ el }}__inner">
+    <div class="{{ el }}__header--sm">
+      <p class="{{ el }}__ribbon u" itemprop="brand">{{ product.vendor | link_to: vendor_url }}</p>
+      <h1 class="{{ el }}__header">{{ product.title }}</h1>
+      {% if shop.domain contains '.com' %}
+        {% include 'yotpo__stars' %}
+      {% endif %}
+    </div>
+
+    <div class="{{ el }}__image">
+      {% include 'product-gallery' %}
+    </div>
+    <div class="{{ el }}__body">
+      <div class="{{ el }}__header--lg">
+        <p class="{{ el }}__ribbon u" itemprop="brand">{{ product.vendor | link_to: vendor_url }}</p>
+        <h1 class="{{ el }}__header">{{ product.title }}</h1>
+        {% if shop.domain contains '.com' %}
+          {% include 'yotpo__stars' %}
+        {% endif %}
+      </div>
+
+      <div class="{{ el }}__price h1" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+        {% if product.available %}
+          <link itemprop="availability" href="http://schema.org/InStock" />
+        {% else %}
+          <link itemprop="availability" href="http://schema.org/OutOfStock" />
+        {% endif %}
+        {% assign shown = 0 %}
+        {% for variant in product.variants %}
+          {%- capture success -%}
+            <span class="{{ el }}__price-item" data-price-multiplier="{{ variant.price }}">
+              {{ variant.price | money_with_currency }}
+            </span>
+          {%- endcapture -%}
+          {% include 'variant-location-validator', success: success %}
+        {% endfor %}
+        {% if has_compare %}
+          <s class="{{ el }}__price-compare">{{ variant.compare_at_price | money_with_currency }}</s>
+        {% endif %}
+      </div>
+
+      {% assign hide_default_title = false %}
+      {% if product.variants.size == 1 and product.variants.first.title contains
+      'Default' %}
+        {% assign hide_default_title = true %}
+      {% endif %}
+
+      {% capture selectOptions %}
+        {% for variant in product.variants %}
+          {%- capture success -%}
+            <option {% if variant == product.selected_or_first_available_variant %}selected{% endif %} value="{{ variant.id }}">
+              {% include 'variant-title' %} - {{ variant.price | money_with_currency }}
+            </option>
+          {%- endcapture -%}
+          {% include 'variant-location-validator', success: success %}
+        {% endfor %}
+      {% endcapture %}
+      {% if product.available and variantsDisplayed > 0 %}
+        <div class="{{ el }}__variants form-item{% if hide_default_title %} hidden{% endif %}">
+          <label>Size</label>
+          <select name="id">{{ selectOptions }}</select>
+        </div>
+      {% endif %}
+
+      <div class="{{ el }}__backorder hidden">
+        <p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
+      </div>
+
+      <div class="{{ el }}__quantity-row">
+        {% if product.available and variantsDisplayed > 0 %}
+          {% if type != 'pre-build-box' %}
+            <div class="{{ el }}__quantity form-item">
+              {% include 'quantity-field', static: true %}
+            </div>
+          {% endif %}
+
+          <div class="{{ el }}__add">
+            {% if settings.poc__enable and product.id == all_products[settings.poc__id].id %}
+              <a class="pre-order-add b">Pre-Order</a>
+            {% else %}
+              <input type="submit" name="add" value="{{ add_to_cart | escape }}" class="b" />
+            {% endif %}
+          </div>
+        {% else %}
+          <p class="h2 color-primary">Out of Stock</p>
+        {% endif %}
+      </div>
+
+      {% assign abs_url = shop.url | append: product.url %}
+
+      {% include 'share', title: product.title, url: abs_url %}
+
+      <div class="{{ el }}__copy" itemprop="description">{{ product.description }}</div>
+
+      <dynamic-section data-section="product-attributes-teasers"></dynamic-section>
+
+      <dynamic-section data-section="product-nutrition-information"></dynamic-section>
+
+      <div class="{{ el }}__reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+
+    </div>
+  </div>
+</form>
+
+{% comment %} <dynamic-section data-section="product-attributes-sliders"></dynamic-section> {% endcomment %}
+
+<dynamic-section data-section="product-attributes"></dynamic-section>
+
+{% comment %} <dynamic-section data-section="product-related-recipes"></dynamic-section> {% endcomment %}
+
+<dynamic-section data-section="product-related-products" data-pid="{{ product.id }}"  data-related="true"></dynamic-section>
+
+{% if shop.domain contains '.com' %}
+  {% include 'yotpo__full', product: product %}
+{% endif %}
+
+{{ 'product.js' | asset_url | script_tag }}

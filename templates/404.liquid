@@ -1,0 +1,17 @@
+{% capture c_copy %}
+  <p>The page you requested does not exist.</p>
+  <br />
+  <a class="b" href="{{ routes.root_url }}collections/all">Continue Shopping</a>
+{% endcapture %}
+
+{% include 'card',
+c_display: 'page',
+c_modifier: 'copy-max',
+c_header: '404 Page Not Found',
+c_header_el: 'h1',
+c_header_modifier: 'title-font color-primary center',
+c_copy: c_copy,
+c_copy_modifier: 'center',
+%}
+
+{% section 'factoids' %}

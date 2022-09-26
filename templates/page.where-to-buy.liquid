@@ -1,0 +1,13 @@
+<h1 class="title-font color-primary center">{{ page.title }}</h1>
+{% assign mapsAPIKey = 'AIzaSyBkUqqoKWkPqxuZ5BwaOQE61wRKDUZMk1I' %} {% assign
+mapsBaseURL = 'https://maps.googleapis.com/maps/api/js?libraries=places&key=' %}
+<script src="{{ mapsBaseURL | append: mapsAPIKey }}" async></script>
+{% if shop.url contains '.ca' %}
+<script>
+  window.wtbDefaultCountry = "Canada";
+</script>
+{% else %}
+<script>
+  window.wtbDefaultCountry = "United States";
+</script>
+{% endif %} {% include 'wtb--index' %}

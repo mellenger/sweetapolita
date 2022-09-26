@@ -1,0 +1,29 @@
+{% assign el = 'search-modal' %}
+<div class="{{ el }}" data-theme="secondary">
+  <div class="{{ el }}__inner">
+    <div class="{{ el }}__header h4 title-font color-primary">
+      {{ section.settings.header }}
+      <a class="icon icon-close icon--grey-2 toggle-search" href="#"></a>
+    </div>
+    <div class="{{ el }}__copy">
+      <div class="form-item">
+        <input type="text" name="search" />
+      </div>
+    </div>
+    <div class="{{ el }}__results"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search Modal",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header",
+      "default": "Search"
+    }
+  ]
+}
+{% endschema %}

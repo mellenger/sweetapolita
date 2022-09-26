@@ -1,0 +1,8 @@
+{% assign el = 'cart-icon' %}
+<a href="{{ routes.cart_url }}" class="{{ el }} toggle-cart color-orange" rv-data-cart-item-count="cart.item_count" data-cart-view>
+  <span class="{{ el }}__count" rv-if="cart.item_count | gt 0">
+    <span class="{{ el }}__count-count" rv-text="cart.item_count | itemCountWithoutBab"></span>/<span class="{{ el }}__count-price" rv-html="cart.total_price | money ">{{ cart.total_price | money }}</span>
+  </span> 
+  <i class="icon icon-bag" class="color: #FF71BE;"></i>
+</a>
+

@@ -1,0 +1,17 @@
+{%- if variantsDisplayed == blank -%}
+  {%- assign variantsDisplayed = 0 -%}
+{%- endif -%}
+{%- assign variantCurrencyValid = false -%}
+{%- if shop.url contains '.ca' or variant.metafields.location.market == blank or variant.metafields.location.market == 'International' -%}
+  {%- assign variantCurrencyValid = true -%}
+{%- elsif localization.country.iso_code == 'CA' and variant.metafields.location.market == 'CA' -%}
+  {%- assign variantCurrencyValid = true -%}
+{%- elsif localization.country.iso_code == 'US' and variant.metafields.location.market == 'US' -%}
+  {%- assign variantCurrencyValid = true -%}
+{%- endif -%}
+
+{%- if variant.title != '2oz Bottle' and variant.title != '2oz Bottle Bilingual' and variant.available and variantCurrencyValid and variant.metafields.location.hideOnRetail != true -%}
+  {%- assign variantsDisplayed = variantsDisplayed | plus: 1 -%}
+  {{- success -}}
+{%- endif -%}
+{%- assign success = null -%}

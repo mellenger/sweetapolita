@@ -1,0 +1,111 @@
+{% include 'layout-builder', section: section %}
+
+{% schema %}
+  {
+    "blocks": [
+      {
+        "type": "reveal-box",
+        "name": "Reveal box",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "image-alignment",
+            "type": "select",
+            "label": "Image alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "right"
+          },
+          {
+            "id": "ribbon",
+            "type": "richtext",
+            "label": "Ribbon"
+          },
+          {
+            "id": "header",
+            "type": "richtext",
+            "label": "Header"
+          },
+          {
+            "id": "copy",
+            "type": "richtext",
+            "label": "Copy"
+          },
+          {
+            "id": "button",
+            "type": "text",
+            "label": "Button text",
+            "default": "Read more"
+          },
+          {
+            "type": "header",
+            "content": "Theme"
+          },
+          {
+            "id": "text-color",
+            "type": "select",
+            "label": "Theme",
+            "options": [
+              {
+                "value": "default",
+                "label": "Default"
+              },
+              {
+                "value": "primary",
+                "label": "Pink"
+              },
+              {
+                "value": "orange",
+                "label": "Orange"
+              },
+              {
+                "value": "turquoise",
+                "label": "Turquoise"
+              },
+              {
+                "value": "blue-light",
+                "label": "Light blue"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "id": "background-color",
+            "type": "color",
+            "label": "Background color"
+          },
+          {
+            "type": "header",
+            "content": "Accents"
+          },
+          {
+            "id": "accent-1",
+            "type": "image_picker",
+            "label": "Accent 1"
+          },
+          {
+            "id": "accent-2",
+            "type": "image_picker",
+            "label": "Accent 2"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

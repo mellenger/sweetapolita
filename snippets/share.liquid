@@ -1,0 +1,21 @@
+{%- capture items -%}
+chain|{{url }}
+fb|https://www.facebook.com/sharer/sharer.php?u={{ url }}
+tw|https://twitter.com/intent/tweet?url={{ url }}&amp;text={{ title }}
+pi|//pinterest.com/pin/create/link/?url={{ url }}&amp;description={{ title }}
+em|mailto:?subject={{ title }}&amp;body={{ url }}
+{%- endcapture -%}
+{% assign items = items | newline_to_br | split: '<br />' %}
+
+{% assign subEl = 'share' %}
+<div class="{{ subEl }}">
+  <div class="{{ subEl }}__inner">
+    <p class="{{ subEl }}__header">Share</p>
+    <ul class="{{ subEl }}__list">
+      {%- for i in items -%}
+        {% assign x = i | strip | split: '|' %}
+        <li><a href="{{ x[1] }}" target="_blank" class="icon icon-{{ x[0] }}"></a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>

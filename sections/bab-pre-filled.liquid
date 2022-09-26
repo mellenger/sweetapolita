@@ -1,0 +1,51 @@
+{% include 'falling-shapes' %}
+
+{% capture items %}
+  {% for block in section.blocks %}
+    <div class="product-grid__item">
+      {% include 'product-card',
+        product: all_products[block.settings.product]
+      %}
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% include 'product-grid',
+  modifier: 'product-grid--pre-build-box',
+  grid: 'thirds',
+  header: section.settings.title,
+  copy: section.settings.copy,
+  products: products,
+  count: section.blocks.size,
+  items: items,
+%}
+
+{% schema %}
+  {
+    "settings": [
+      {
+        "id": "title",
+        "type": "richtext",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "richtext",
+        "label": "Copy"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "box",
+        "name": "Boxes",
+        "settings": [
+          {
+            "id": "product",
+            "type": "product",
+            "label": "Product"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,53 @@
+{% assign el = 'reveal-box' %}
+{% assign wc = block.settings.copy | strip_html | strip | split: ' ' | size %}
+
+{%- capture c_modifier -%}
+  c-{{ el }}--{% if block.settings.image %}has{% else %}no{% endif %}-image
+  c-{{ el }}--image-align-{{ block.settings.image-alignment }}
+  {% if wc < 100 %}
+    c-{{ el }}--low-word-count
+  {% endif %}
+  color-primary
+{%- endcapture -%}
+{%- capture c_attr -%}
+  {% if block.settings.text-color %}
+    data-theme="{{ block.settings.text-color }}"
+  {% endif %}
+  {% if block.settings.background-color != empty %}
+    style="background-color: {{ block.settings.background-color }};"
+  {% endif %}
+{%- endcapture -%}
+{%- capture c_context -%}
+  {% if block.settings.accent-1 %}
+    <img class="c-{{ el }}__accent" src="{{ block.settings.accent-1 | img_url: '300x' }}" />
+  {% endif %}
+  {% if block.settings.accent-2 %}
+    <img class="c-{{ el }}__accent" src="{{ block.settings.accent-2 | img_url: '300x' }}" />
+  {% endif %}
+{%- endcapture -%}
+{%- capture c_image -%}
+  {% if block.settings.image %}
+    <a style="background-image: url({{ block.settings.image | img_url: '900x' }});"></a>
+  {% endif %}
+{%- endcapture -%}
+{%- capture c_copy -%}
+  {{ block.settings.copy }}
+{%- endcapture -%}
+{%- capture c_footer -%}
+    <span class="c-{{ el }}__gradient" {% if block.settings.background-color != empty %} style="background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0, {{ block.settings.background-color }} 60px)"{% endif %}></span>
+  <a href="#">{{ block.settings.button | default: "Read more" }}</a>
+{%- endcapture -%}
+
+{% include 'card',
+  c_display: el,
+  c_modifier: c_modifier,
+  c_attr: c_attr,
+  c_context: c_context,
+  c_ribbon: block.settings.ribbon,
+  c_header: block.settings.header,
+  c_header_el: 'h3',
+  c_header_modifier: 'title-font',
+  c_image: c_image,
+  c_copy: c_copy,
+  c_footer: c_footer,
+%}

@@ -1,0 +1,46 @@
+{% assign el = 'cta' %}
+<div class="{{ el }} cta--faq">
+  <div class="{{ el }}__inner">
+    {% for block in section.blocks %}
+      {%- capture c_header -%}
+        <a href="{{ block.settings.url }}">{{ block.settings.header }}</a>
+      {%- endcapture -%}
+
+      {% include 'card',
+        c_display: 'cta',
+        c_modifier: 'color-grey-3',
+        c_header: c_header,
+        c_header_modifier: 'h3',
+        c_copy: block.settings.copy,
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "blocks": [
+      {
+        "type": "cta",
+        "name": "CTA",
+        "settings": [
+          {
+            "id": "header",
+            "type": "richtext",
+            "label": "Header"
+          },
+          {
+            "id": "copy",
+            "type": "richtext",
+            "label": "Copy"
+          },
+          {
+            "id": "url",
+            "type": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

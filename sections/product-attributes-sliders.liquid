@@ -1,0 +1,59 @@
+{% assign el = 'product-attributes-sliders' %}
+
+{%- assign attributeCount = 0 -%}
+{%- capture sliders -%}
+  <h1 class="{{el}}__header">
+    <span class="color-primary">S</span>
+    <span class="color-lime">p</span>
+    <span class="color-secondary">r</span>
+    <span class="color-yellow">i</span>
+    <span class="color-primary-light">n</span>
+    <span class="color-orange">k</span>
+    <span class="color-primary">-</span>
+    <span class="color-lime">o</span>
+    <span class="color-secondary">-</span>
+    <span class="color-secondary">m</span>
+    <span class="color-yellow">e</span>
+    <span class="color-primary-light">t</span>
+    <span class="color-orange">e</span>
+    <span class="color-primary">r</span>
+  </h1>
+
+  <div class="{{el}}__items">
+
+    {% capture options %}
+      size:Size (Length)+3mm|5mm|9mm|12mm|24mm,
+      finish:Finish+Matte|Polished|High-gloss|Metallic|Glitter,
+      crunch:Crunch+Quick-dissolve|Crunchy|Extra-crunchy|Hard shell,
+    {% endcapture %}
+    {% assign options = options | split: ',' %}
+
+
+    {% for o in options %}
+      {% assign option = o | split: ':' %}
+      {% assign attribute_name = option.first | strip | prepend: 'product_attr__' %}
+      {% assign option_value = option.last | split: '+' %}
+      {% assign attribute_label = option_value.first %}
+      {% assign attribute_values = option_value.last | split: '|' %}
+
+      {% if product.metafields.custom_fields[attribute_name] != blank %}
+        {% assign attributeCount = attributeCount | plus: 1 %}
+        <div>
+          <h3 class="{{el}}__item-header">{{attribute_label}}</h3>
+          <ul class="{{el}}__item-labels">
+            {% for value in attribute_values %}
+            <li class="{{el}}__item-label {% if product.metafields.custom_fields[attribute_name] == value -%} {{el}}__item-label--active {%- endif -%}">
+              {{value}}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+{%- endcapture -%}
+
+{%- if attributeCount > 0 -%}
+  <div class="{{el}}">{{sliders}}</div>
+{%- endif -%}

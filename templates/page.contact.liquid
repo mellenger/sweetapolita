@@ -1,0 +1,20 @@
+{%- capture c_attr -%}
+  data-theme="secondary"
+{%- endcapture -%}
+{% capture c_copy %}
+  <p>We love hearing from you! If you have a specific question, please check our <a href="{{ routes.root_url }}pages/faq">FAQ</a> page (we still love hearing from you, but this will save you time!).</p>
+  {% include 'contact-form' %}
+{% endcapture %}
+
+{% include 'card',
+  c_attr: c_attr,
+  c_display: 'page',
+  c_modifier: 'form-max',
+  c_header: page.title,
+  c_header_el: 'h1',
+  c_header_modifier: 'title-font color-secondary center',
+  c_copy: c_copy,
+%}
+
+{% section 'cta--faq' %}
+{% section 'factoids' %}

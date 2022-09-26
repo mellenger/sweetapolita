@@ -1,0 +1,120 @@
+<style>
+  #header__mobile .icon-bag{
+        color: #FF71BE;
+  }
+  .util-area{right:0px;}
+</style>
+{% assign hEl = 'header' %}
+<header id="{{ hEl }}">
+  <div id="{{ hEl }}__ribbon" style="background-color: {{ section.settings.header-message-color | default: '#FF71BE' }};">
+    {% if section.settings.header-message-show %}
+      <a id="{{ hEl }}__message"
+        data-vid="{{ section.settings.header-message-vid }}"
+        data-countdown="{% if section.settings.header-message-countdown-enable %}{{ section.settings.header-message-countdown }}{% else %}false{% endif %}"
+        {% if section.settings.header-message-url %}href="{{ section.settings.header-message-url }}"{% endif %}>
+        <!-- <span id="{{ hEl }}__message-exit" class="icon icon-close"></span> -->
+        {{ section.settings.header-message }}
+      </a>
+    {% endif %}
+  </div>
+
+  <div id="{{ hEl }}__mobile" class="outer-container">
+    {% include 'hamburger' %}
+    {% include 'branding' %}
+    <span style="position: relative;width:24px;height:24px;margin-left:auto;cursor:pointer;" class="mobile-search-container"></span>
+    {% include 'cart-icon', modifier: 'color-turquoise' %}
+    {% include 'search', modifier: 'color-turquoise' %}
+  </div>
+  <div id="{{ hEl }}__inner" class="outer-container">
+    {% include 'branding' %}
+    <a class="icon icon-close icon--grey-2 toggle-menu" href="#"></a>
+    {% assign menu = linklists[section.settings.header_menu] %}
+    {% include 'menu', menu: menu, showSearch: true %}
+    {% include 'header-menu-right' %}
+    {% comment %}
+    {% include 'login', modifier: 'color-blue-light' %}
+    {% include 'cart-icon', modifier: 'color-turquoise' %}
+    {% include 'search', modifier: 'color-turquoise' %}
+    {% include 'social-media' %}
+    {% endcomment %}
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Menus"
+    },
+    {
+      "type": "link_list",
+      "id": "header_menu",
+      "label": "Header Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "header_menu_secondary",
+      "label": "Secondary Header Menu"
+    },
+    {
+      "type": "header",
+      "content": "Header Message"
+    },
+    {
+      "type": "checkbox",
+      "id": "header-message-show",
+      "label": "Show header message",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "header-message-color",
+      "label": "Header message color",
+      "default": "#FF71BE"
+    },
+    {
+      "type": "richtext",
+      "id": "header-message",
+      "label": "Header message",
+      "default": "<p>Free shipping on orders over $75</p>"
+    },
+    {
+      "type": "url",
+      "id": "header-message-url",
+      "label": "Header message link"
+    },
+    {
+      "type": "text",
+      "id": "header-message-vid",
+      "label": "Header message version ID",
+      "default": "0.1.1",
+      "info": "Change this number to force the ribbon to reappear"
+    },
+    {
+      "type": "checkbox",
+      "id": "header-message-countdown-enable",
+      "label": "Use header message countdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "header-message-countdown",
+      "label": "Header message countdown to",
+      "default": "2021-07-31"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+$(".mobile-search-container").click(function(){
+ $(".search-container").toggleClass("show-search"); 
+
+  $("body").removeClass("show-search");
+});
+  $(".crossicon").click(function(){
+    $(".search-container").removeClass("show-search"); 
+});
+</script>

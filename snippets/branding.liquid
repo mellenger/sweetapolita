@@ -1,0 +1,16 @@
+{% assign el = 'branding' %}
+{% unless dispaly %}
+  {% assign display = 'default' %}
+{% endunless %}
+<div class="{{ el }} {{ el }}--{{ display }} {{ modifier }}">
+  <a class="{{ el }}__inner" href="{{ routes.root_url }}">
+    {% if display == 'circle' %}
+      {{ 'logo-circle.svg' | asset_url | img_tag }}
+      <!-- {{ settings.logo_circle }} -->
+      {% else %}
+      {{ 'logo.svg' | asset_url | img_tag }}
+      <!-- {{ settings.logo }} -->
+    {% endif %}
+  </a>
+</div>
+

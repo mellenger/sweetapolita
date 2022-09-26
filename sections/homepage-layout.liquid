@@ -1,0 +1,129 @@
+{% include 'layout-builder', section: section %}
+
+{% schema %}
+  {
+    "blocks": [
+      {
+        "type": "hero",
+        "name": "Hero",
+        "settings": [
+          {
+            "id": "theme",
+            "type": "select",
+            "label": "Theme",
+            "options": [
+              {
+                "value": "default",
+                "label": "Default"
+              },
+              {
+                "value": "white-on-pink",
+                "label": "White on pink"
+              },
+              {
+                "value": "pink-on-white",
+                "label": "Pink on white"
+              }
+            ],
+            "default": "default"
+          },
+          {
+            "id": "alignment",
+            "type": "select",
+            "label": "Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "image_mobile",
+            "type": "image_picker",
+            "label": "Image - Mobile"
+          },
+          {
+            "id": "header",
+            "type": "richtext",
+            "label": "Header"
+          },
+          {
+            "id": "url",
+            "type": "url",
+            "label": "URL"
+          },
+          {
+            "id": "subtitle",
+            "type": "richtext",
+            "label": "Subtitle"
+          },
+          {
+            "id": "copy",
+            "type": "richtext",
+            "label": "Copy"
+          },
+          {
+            "id": "button",
+            "type": "text",
+            "label": "Button text",
+            "info": "Only if set, a button will show."
+          },
+          {
+            "type": "header",
+            "content": "Modifiers"
+          },
+          {
+            "id": "modifier__mobile-image-separate",
+            "type": "checkbox",
+            "label": "On mobile, show block image"
+          }
+        ]
+      },
+      {
+        "type": "product-grid",
+        "name": "Product grid",
+        "settings": [
+          {
+            "id": "icon",
+            "type": "image_picker",
+            "label": "Icon"
+          },
+          {
+            "id": "header",
+            "type": "richtext",
+            "label": "Header"
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "count",
+            "type": "range",
+            "label": "Count",
+            "min": 1,
+            "max": 16,
+            "step": 1,
+            "default": 4
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

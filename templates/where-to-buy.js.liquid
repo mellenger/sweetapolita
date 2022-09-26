@@ -1,0 +1,90 @@
+console.log("{{ 'location-arrow.svg' | asset_url | img_tag }}")
+console.log("asf")
+
+window.whereToBuy = {
+  isGeolocationActive: false,
+
+  map: undefined,
+  autocomplete: undefined,
+  userMarker: undefined,
+
+  initMaps: () => {
+    // AUTOCOMPLETE
+    const options = {
+      componentRestrictions: { country: "ca" },
+      fields: ["geometry", "name"],
+      strictBounds: false,
+      types: [],
+    };
+    const input = document.getElementById("where-to-buy__autocomplete");
+    window.whereToBuy.autocomplete = new google.maps.places.Autocomplete(
+      input,
+      options
+    );
+
+    window.whereToBuy.autocomplete.addListener("place_changed", () => {
+      const place = window.whereToBuy.autocomplete.getPlace();
+
+      if (!place.geometry) {
+        // User did not select a prediction; reset the input field
+        input.placeholder = "Enter a place";
+      } else {
+        console.log(place);
+        console.log(
+          place.geometry.location.lat(),
+          place.geometry.location.lng()
+        );
+
+        window.whereToBuy.userMarker= new google.maps.Marker({
+          position: {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng()
+          },
+          map: window.whereToFind.map,
+          icon:
+        })
+      }
+    });
+
+    // MAP
+    const vancouver = { lat: 49.28323201694063, lng: -123.12089349382718 };
+    const mapDiv = document.getElementById("where-to-buy__map");
+    window.whereToBuy.map = new google.maps.Map(mapDiv, {
+      zoom: 5,
+      center: vancouver,
+    });
+  },
+
+  onActivateLocation: () => {
+    if (window.whereToBuy.isGeolocationActive) {
+      document
+        .getElementById("where-to-buy__location-button")
+        .classList.remove("where-to-buy__location-button--active");
+    } else {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            console.log(position);
+
+            window.whereToBuy.map.setCenter(pos);
+            window.whereToBuy.isGeolocationActive = true;
+
+            document
+              .getElementById("where-to-buy__location-button")
+              .classList.add("where-to-buy__location-button--active");
+          },
+          () => {
+            window.whereToBuy.isGeolocationActive = false;
+            console.error("Use of geolocation not allowed");
+          }
+        );
+      } else {
+        console.log("Navigator doesn't have geolocation");
+      }
+    }
+  },
+};

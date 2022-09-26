@@ -1,0 +1,61 @@
+{%- assign tmpEl = 'cart-item' -%}
+{%- capture c_attr -%}
+  rv-data-key="item.key"
+  rv-data-pid="item.id"
+  rv-data-vid="item.variant_id"
+  rv-data-tags="item.tags"
+  rv-data-theme="item.id | themeMetafield"
+  rv-data-box="item.properties._boxId"
+{%- endcapture -%}
+
+{%- capture c_image -%}
+  <a rv-href="item.handle | productUrl">
+    <img rv-src="item.image | imageUrl '260x260'" />
+  </a>
+{%- endcapture -%}
+
+{%- capture c_header -%}
+  <a rv-href="item.handle | productUrl" rv-html="item.product_title"></a>
+{%- endcapture -%}
+
+{%- capture c_copy -%}
+  <li class="c-{{ tmpEl }}__variant-title" rv-if="item.variant_title" rv-html="item.variant_title | variantTitle"></li>
+  <li class="c-{{ tmpEl }}__price" rv-if="item.price" rv-html="item.price | money_with_currency"></li>
+  <li class="c-{{ tmpEl }}__price" rv-if="item.properties._boxId" rv-html="item.properties._boxId | babPrice"></li>
+  <li class="c-{{ tmpEl }}__property" rv-each-property="item.propertyArray | hideHiddenProps < property">
+    <span rv-if="item.properties._boxId | present" class="c-{{ tmpEl }}__property-box-prop">
+      {property.name}
+      <i class="icon icon-close"></i>
+      {property.value}
+    </span>
+    <span rv-unless="item.properties._boxId | present">{property.name}: {property.value}</span>
+  </li>
+  <li class="c-{{ tmpEl }}__property c-{{ tmpEl }}__property--note" rv-if="item.properties._messageNote | present">
+    Special note:<br />
+    <i>
+    To <span rv-html="item.properties._messageTo"></span><br />
+    <span rv-html="item.properties._messageNote"></span>
+  </i>
+  </li>
+{%- endcapture -%}
+
+{%- capture c_footer -%}
+  <span rv-unless="item.properties._boxId | present">
+    {% include 'quantity-field' %}
+  </span>
+  <a rv-if="item.properties._boxId | present" class="b b--underline" rv-data-box-id="item.properties._boxId" onclick="Theme.removeBaB(event)">Remove</a>
+  <a rv-unless="item.properties._boxId | present" class="b b--underline" rv-data-cart-remove-id="item.key">Remove</a>
+{%- endcapture -%}
+
+{% include 'card',
+  c_display: tmpEl,
+  c_type: 'sidebar',
+  c_image: c_image,
+  c_header: c_header,
+  c_header_el: 'h2',
+  c_copy: c_copy,
+  c_copy_el: 'ul',
+  c_footer: c_footer,
+  c_attr: c_attr,
+%}
+

@@ -1,0 +1,87 @@
+{%- capture c_attr -%}
+  {% if section.settings.image %}
+    style="background-image: url({{ section.settings.image | img_url: '2000x' , crop: 'center' }});"
+  {% endif %}
+{%- endcapture -%}
+
+{%- capture c_footer -%}
+  {% assign subEl = 'c-hero__footer__sub' %}
+  <div class="{{ subEl }}">
+    <div class="{{ subEl }}-copy">
+      <h2 class="{{ subEl }}-header color-primary">{{ section.settings.box-title }}</h2>
+      <div class="color-grey-3">{{ section.settings.box-copy }}</div>
+    </div>
+    <div class="{{ subEl }}-image">
+      <img src="{{ section.settings.box-image | img_url: '405x' }}" />
+    </div>
+    {% if section.settings.box-link__title != blank and section.settings.box-link__url != blank %}
+      <div class="{{ subEl }}-footer">
+        <a class="b" href="{{ section.settings.box-link__url }}">{{ section.settings.box-link__title }}</a>
+      </div>
+    {% endif %}
+  </div>
+{%- endcapture -%}
+
+{% include 'card',
+  c_display: 'hero',
+  c_attr: c_attr,
+  c_modifier: 'c-hero--bab',
+  c_header: section.settings.title,
+  c_header_el: 'h1',
+  c_header_modifier: 'h2 title-font color-primary',
+  c_image: '',
+  c_copy: section.settings.copy,
+  c_copy_modifier: 'color-primary',
+  c_footer: c_footer,
+%}
+
+{% schema %}
+  {
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Hero image"
+      },
+      {
+        "id": "title",
+        "type": "richtext",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "richtext",
+        "label": "Copy"
+      },
+      {
+        "type": "header",
+        "content": "Box"
+      },
+      {
+        "id": "box-title",
+        "type": "richtext",
+        "label": "Box title"
+      },
+      {
+        "id": "box-copy",
+        "type": "richtext",
+        "label": "Box copy"
+      },
+      {
+        "id": "box-image",
+        "type": "image_picker",
+        "label": "Box image"
+      },
+      {
+        "id": "box-link__title",
+        "type": "text",
+        "label": "Box link title"
+      },
+      {
+        "id": "box-link__url",
+        "type": "url",
+        "label": "Box link URL"
+      }
+    ]
+  }
+{% endschema %}

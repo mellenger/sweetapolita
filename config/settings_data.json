@@ -1,0 +1,539 @@
+{
+  "current": {
+    "contact_page": "shopify:\/\/pages\/say-hello",
+    "slogan": "Where Happy Lives",
+    "social_tw": "http:\/\/twitter.com\/sweetapolita",
+    "social_fb": "https:\/\/facebook.com\/sweetapolita",
+    "social_pi": "http:\/\/www.pinterest.com\/sweetapolita",
+    "social_in": "https:\/\/www.instagram.com\/sweetapolita\/?hl=en",
+    "p-attr__vegan": "vegan-sprinkles",
+    "p-attr__vegetarian": "vegetarian-sprinkles",
+    "p-attr__gluten_free": "gluten-free-sprinkles",
+    "p-attr__kosher": "kosher-sprinkles",
+    "p-attr__dairy_free": "dairy-free",
+    "p-attr__dairy_kosher": "dairy-kosher",
+    "payments_amex": true,
+    "payments_apple-pay": true,
+    "payments_diners-club": true,
+    "payments_discover": true,
+    "payments_google-pay": true,
+    "payments_mastercard": true,
+    "payments_paypal": true,
+    "payments_shopify-pay": true,
+    "payments_visa": true,
+    "poc__enable": false,
+    "poc__id": "sprinkle-advent-calendar-with-free-25-gift-card",
+    "poc__confirmation": "<p>Oops! This item is a pre-order product, therefore must be purchased alone. Please confirm that you would like to add it to your cart (this will automatically remove any other products in your cart). <\/p>",
+    "poc__ribbon": "<p>Oops! Because this pre-order product can only be purchased on its own, all additional products have been removed from your cart. <\/p>",
+    "bab-product": "build-a-box",
+    "bab-url": "shopify:\/\/pages\/build-a-box-landing",
+    "header_menu_secondary": "header-menu-secondary",
+    "header_menu": "header-menu",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "header_menu": "header-menu",
+          "header_menu_secondary": "header-menu-secondary",
+          "header-message-show": true,
+          "header-message-color": "#ff71be",
+          "header-message": "<p>WORLDWIDE SHIPPING + LOCAL PICK UP in WHITBY, ONTARIO!<\/p>",
+          "header-message-url": "",
+          "header-message-vid": "1.0",
+          "header-message-countdown-enable": true,
+          "header-message-countdown": ""
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_menu": "footer-1",
+          "footer_slogan": "Female Founded in 2015",
+          "footer_signup_title": ""
+        }
+      },
+      "side-cart": {
+        "type": "side-cart",
+        "settings": {
+          "title": "Shopping Cart",
+          "subtitle": "Free shipping on orders over $75!",
+          "button_title": "Checkout"
+        }
+      },
+      "instagram-feed": {
+        "type": "instagram-feed",
+        "settings": {
+          "header": "Join the Sprinkle Squad",
+          "feed-title": "@sweetapolita",
+          "gallery": "<covet-pics-widget gallery-embed-id=\"179777\"><\/covet-pics-widget>"
+        }
+      },
+      "homepage-layout": {
+        "type": "homepage-layout",
+        "blocks": {
+          "e70c289c-ed36-48bd-98a8-6d1938c9d057": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "white-on-pink",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/christmas2022_banner-02.png",
+              "image_mobile": "shopify:\/\/shop_images\/christmas2022_banner-10.png",
+              "header": "",
+              "url": "",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "923fc610-25fc-4a17-acd8-12fc43c286f7": {
+            "type": "hero",
+            "settings": {
+              "theme": "pink-on-white",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/Halloween2022_Sweetapolita-09_1e63456d-5ecb-4b7d-86e2-ce5f4dcc2d22.png",
+              "image_mobile": "shopify:\/\/shop_images\/Halloween2022_Sweetapolita-12_e5e4e616-b5f5-4d91-b075-78f0ba33bdd6.png",
+              "header": "",
+              "url": "shopify:\/\/collections\/halloween-harvest",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "420ef042-58a4-4794-bdf4-3f1db1634d7d": {
+            "type": "product-grid",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/Sweetapolita_Logo-06_1.png",
+              "header": "<p>New + Trending!<\/p>",
+              "collection": "new",
+              "count": 4
+            }
+          },
+          "879607ec-7171-434c-9c50-d5b9bfd19884": {
+            "type": "hero",
+            "settings": {
+              "theme": "white-on-pink",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/rainbow_website_banner_copy_2.png",
+              "image_mobile": "shopify:\/\/shop_images\/BABmobilebanner.png",
+              "header": "<p><strong>Build a sample box of best sellers!<\/strong><\/p>",
+              "url": "shopify:\/\/pages\/build-a-box-landing",
+              "subtitle": "",
+              "copy": "<p>Create your own sprinkle sampler! Select your favorite sprinkles for either a 6-pack, 9-pack or double up for the full 2-tier, 15-pack of our 2oz bottles filled with all kinds of happy.<\/p>",
+              "button": "SHOP NOW!",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "962e1aa9-1c89-4751-a013-067a4078db33": {
+            "type": "product-grid",
+            "settings": {
+              "icon": "shopify:\/\/shop_images\/Illustrations_unicorn_unicorn_2.png",
+              "header": "<p>Halloween + Harvest<\/p>",
+              "collection": "halloween-harvest",
+              "count": 4
+            }
+          },
+          "52a968b0-3920-4df1-8746-6f89222c84f4": {
+            "type": "hero",
+            "settings": {
+              "theme": "default",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/Advent_2022_website-18.png",
+              "image_mobile": "shopify:\/\/shop_images\/Advent_2022_website-19.png",
+              "header": "",
+              "url": "shopify:\/\/products\/sprinkle-advent-calendar-with-free-25-gift-card",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "d389f7d2-4f05-44f8-9db1-15cf3fb769c4": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "default",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/Halloween2022_Sweetapolita_Recovered_-14.png",
+              "image_mobile": "shopify:\/\/shop_images\/Halloween2022_Sweetapolita_Recovered_-10.png",
+              "header": "",
+              "url": "shopify:\/\/collections\/halloween-harvest",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "253862a2-d9be-4895-9071-b6a5ac54a47d": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "default",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/Advent_2022_webfreegift-20.png",
+              "image_mobile": "shopify:\/\/shop_images\/Advent_2022_webfreegift-21.png",
+              "header": "",
+              "url": "",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "1d0963e6-15ea-4422-828e-eeade2e5f1e6": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "default",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/Halloween2022_Sweetapolita_Recovered_-11_d85f7a70-1f21-4b11-916a-9997c45646e8.png",
+              "image_mobile": "shopify:\/\/shop_images\/Halloween2022_Sweetapolita_Recovered_-13_6f7f6bb9-ab4a-47c5-ad1a-320690248c83.png",
+              "header": "",
+              "url": "shopify:\/\/collections\/halloween-harvest",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "4f44b659-cf68-4447-b60a-e3285e898973": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "default",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/Advent_2022_Graphics-07.png",
+              "image_mobile": "shopify:\/\/shop_images\/Advent_2022_Graphics-08.png",
+              "header": "",
+              "url": "shopify:\/\/pages\/sprinkleadventwaitlist",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "a21b2f57-fbb0-48ef-8e2e-45fa18d3abbd": {
+            "type": "product-grid",
+            "disabled": true,
+            "settings": {
+              "header": "<p>sale!<\/p>",
+              "collection": "all-sale",
+              "count": 4
+            }
+          },
+          "b41e468d-c92b-4429-abc0-59da716561be": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "default",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/bestsellers-24.png",
+              "image_mobile": "shopify:\/\/shop_images\/bestsellers-28.png",
+              "header": "",
+              "url": "shopify:\/\/collections\/best-sellers",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "02021717-51ef-4a89-a8b8-55ef12696ffb": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "default",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/colourmillwebgraphics-26.png",
+              "image_mobile": "shopify:\/\/shop_images\/colourmillmobilebanner2-27.png",
+              "header": "",
+              "url": "shopify:\/\/collections\/food-colour",
+              "subtitle": "",
+              "copy": "",
+              "button": "",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "c7af4bf8-0f52-4d70-be1f-e79fe36b5d48": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "white-on-pink",
+              "alignment": "right",
+              "image": "shopify:\/\/shop_images\/Pride_2022_Launch_website_banner_copy_3_0f1a2324-d887-4530-887d-201bfec34ed1.png",
+              "image_mobile": "shopify:\/\/shop_images\/Pride_2022_Launch-02.png",
+              "header": "<p>RAINBOW CRUNCHY SPRINKLE BUNDLE!<\/p>",
+              "url": "shopify:\/\/products\/rainbow-surprise-bag-pride",
+              "subtitle": "",
+              "copy": "<p><strong>Lets get this celebration started - it's time for the VALUE-PACKED RAINBOW CRUNCHY SPRINKLE BUNDLE!<\/strong><\/p>",
+              "button": "shop now!",
+              "modifier__mobile-image-separate": true
+            }
+          },
+          "e9366aa2-5e52-4c54-a029-4ffb07bd8f92": {
+            "type": "hero",
+            "disabled": true,
+            "settings": {
+              "theme": "pink-on-white",
+              "alignment": "left",
+              "image": "shopify:\/\/shop_images\/KidsCollection_BAB-28.png",
+              "image_mobile": "shopify:\/\/shop_images\/KidsCollection_BAB-29.png",
+              "header": "<p>KIDS' mini SPRINKLETTE BAG<\/p>",
+              "url": "shopify:\/\/products\/kids-sprinklette-surprise-bag-1",
+              "subtitle": "",
+              "copy": "<p>Sprinklettes rejoice! Our first-ever, kids' sprinkle bag is as cute as it is yummy! Celebrating all 6 new Sprinkle Medleys designed for our brand new kids' collection.<\/p>",
+              "button": "shop now!",
+              "modifier__mobile-image-separate": true
+            }
+          }
+        },
+        "block_order": [
+          "e70c289c-ed36-48bd-98a8-6d1938c9d057",
+          "923fc610-25fc-4a17-acd8-12fc43c286f7",
+          "420ef042-58a4-4794-bdf4-3f1db1634d7d",
+          "879607ec-7171-434c-9c50-d5b9bfd19884",
+          "962e1aa9-1c89-4751-a013-067a4078db33",
+          "52a968b0-3920-4df1-8746-6f89222c84f4",
+          "d389f7d2-4f05-44f8-9db1-15cf3fb769c4",
+          "253862a2-d9be-4895-9071-b6a5ac54a47d",
+          "1d0963e6-15ea-4422-828e-eeade2e5f1e6",
+          "4f44b659-cf68-4447-b60a-e3285e898973",
+          "a21b2f57-fbb0-48ef-8e2e-45fa18d3abbd",
+          "b41e468d-c92b-4429-abc0-59da716561be",
+          "02021717-51ef-4a89-a8b8-55ef12696ffb",
+          "c7af4bf8-0f52-4d70-be1f-e79fe36b5d48",
+          "e9366aa2-5e52-4c54-a029-4ffb07bd8f92"
+        ],
+        "settings": {
+        }
+      },
+      "factoids": {
+        "type": "factoids",
+        "blocks": {
+          "b937bb8f-b52a-4668-ad10-3e3ee9a324b4": {
+            "type": "factoid",
+            "settings": {
+              "theme": "primary",
+              "image": "shopify:\/\/shop_images\/Frame_79.png",
+              "header": "<p>sweetapolita cares<\/p>",
+              "copy": "<p>It is part of our mission to give back in any way we can. Sweetapolita actively donates to several non-profit organizations, both locally and globally. <\/p>",
+              "url": ""
+            }
+          },
+          "fb31c8bc-823f-40c5-9486-cbd4d3237813": {
+            "type": "factoid",
+            "settings": {
+              "theme": "lime",
+              "image": "shopify:\/\/shop_images\/Frame_80.png",
+              "header": "<p>Gold standard<br\/>manufacturing<\/p>",
+              "copy": "<p>We insist on the best! One of the several key distinctions between Sweetapolita and our competitors is quality. Our food products are manufactured by gold standard in Canada, Europe and the United States. Simply put, we are committed to premium quality in every single bottle we create.<\/p>",
+              "url": ""
+            }
+          },
+          "9f0ac7e2-762e-4661-86fc-a7f71de04c75": {
+            "type": "factoid",
+            "settings": {
+              "theme": "turquoise",
+              "image": "shopify:\/\/shop_images\/Frame_81.png",
+              "header": "<p>The original artisan sprinkle co.<\/p>",
+              "copy": "<p>Female-founded in Canada in 2015 by baker Rosie Alyea, a genuine love for the baking community and innovation is at the heart of Sweetapolita. Often imitated, but never duplicated.<\/p>",
+              "url": ""
+            }
+          },
+          "c0d355d6-1f61-4bf4-8aca-fa24f89bb7ed": {
+            "type": "factoid",
+            "settings": {
+              "theme": "primary",
+              "image": "shopify:\/\/shop_images\/Frame_82.png",
+              "header": "<p>Sweet value<\/p>",
+              "copy": "<p>We believe in an honest pricing strategy, offering the best value on all of our products, rather than inflated pricing and countless discount codes. Offering tiered value on larger sizing, bundled savings, exciting promotions and free gift with purchase are just some of the many ways we provide value to our customers.<\/p>",
+              "url": ""
+            }
+          }
+        },
+        "block_order": [
+          "b937bb8f-b52a-4668-ad10-3e3ee9a324b4",
+          "fb31c8bc-823f-40c5-9486-cbd4d3237813",
+          "9f0ac7e2-762e-4661-86fc-a7f71de04c75",
+          "c0d355d6-1f61-4bf4-8aca-fa24f89bb7ed"
+        ],
+        "settings": {
+          "header": ""
+        }
+      },
+      "cta--faq": {
+        "type": "cta--faq",
+        "blocks": {
+          "856e355d-f060-45ca-9799-ebd06aa059a6": {
+            "type": "cta",
+            "settings": {
+              "header": "<p>Call Us<\/p>",
+              "copy": "<p>1-888-858-8722<\/p>",
+              "url": "tel:1-888-858-8722"
+            }
+          },
+          "bc98da96-d537-4108-9de0-b45cd4edcc00": {
+            "type": "cta",
+            "settings": {
+              "header": "<p>Wholesale enquiries<\/p>",
+              "copy": "<p><a href=\"mailto:ashley@sweetapolita.com \" title=\"mailto:ashley@sweetapolita.com \">wholesale@sweetapolita.com<\/a><\/p>",
+              "url": ""
+            }
+          },
+          "e37c6e1d-0d02-4122-9f1e-d08e3a7fa765": {
+            "type": "cta",
+            "settings": {
+              "header": "<p>Marketing\/press enquiries<\/p>",
+              "copy": "<p><a href=\"mailto:info@sweetapolita.com\" title=\"mailto:info@sweetapolita.com\">letitia@sweetapolita.com<\/a><\/p>",
+              "url": "mailto:letitia@sweetapolita.com"
+            }
+          },
+          "fd947407-ca7b-49bc-b180-f523a4639ac9": {
+            "type": "cta",
+            "settings": {
+              "header": "<p>Office+Warehouse<\/p>",
+              "copy": "<p><a href=\"https:\/\/goo.gl\/maps\/e25FYh4UhQZztsJD8\" title=\"https:\/\/goo.gl\/maps\/e25FYh4UhQZztsJD8\">111 Industrial Drive, Unit 15-18, Whitby, Ontario L1N 5Z9<\/a><\/p>",
+              "url": "https:\/\/goo.gl\/maps\/e25FYh4UhQZztsJD8"
+            }
+          }
+        },
+        "block_order": [
+          "856e355d-f060-45ca-9799-ebd06aa059a6",
+          "bc98da96-d537-4108-9de0-b45cd4edcc00",
+          "e37c6e1d-0d02-4122-9f1e-d08e3a7fa765",
+          "fd947407-ca7b-49bc-b180-f523a4639ac9"
+        ],
+        "settings": {
+        }
+      },
+      "search-modal": {
+        "type": "search-modal",
+        "settings": {
+          "header": "Search"
+        }
+      },
+      "story": {
+        "type": "story",
+        "blocks": {
+          "dd3dd846-d65b-4ae2-bf9e-69a068f7a443": {
+            "type": "reveal-box",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/story-1.jpg",
+              "image-alignment": "right",
+              "ribbon": "<p>OUR STORY<\/p>",
+              "header": "<p>a note from<br\/>our founder<br\/>ROSIE ALYEA<\/p>",
+              "copy": "<p>Hi, I’m Rosie (sometimes known as Sweetapolita), and you are not in Kansas anymore! You have officially landed in the colourful, magical land of sprinkles: SWEETAPOLITA | Where Happy Lives. Welcome! <br\/><br\/>A bit more about my story, and how the heck Sweetapolita came to be: When I was sixteen, as a result of pure serendipity, I got a job at the only fancy bakery in our city, and it was during that time that I (officially) fell in love with the world-and-wonder of cake and confection. Despite having a long-time enchantment with pretty baked goods, my “cake” career began in a much different way when, in 2000, I partnered with a friend and created a successful dessert-themed bath and body product company called Cake Beauty in my kitchen. And although I left the thriving company in 2003, I believe that those were the formative years of what later became Sweetapolita. Several years later in 2009, after having my first little cakelet, Reese, I dove deep into professional baking and cake courses and was lucky enough to learn from some of the world’s leading cake artists and ultimately became a professional baker and cake designer myself. After weeks of feverish brainstorming, I came up with the name Sweetapolita—a nonsensical word that would represent my playful approach to baking (and life), and hopefully capture the essence of what I create and release into the universe. <br\/><br\/>Armed with a whimsical name and a burning desire, I started a baking blog in 2010--my creative heart and soul were all a-sparkle. After several years of living all-things-baking, I wrote The Sweetapolita Bakebook, and it was during this time that I felt particularly connected to the world of sprinkles. I knew there was a way to elevate and celebrate sprinkles in a way that would bring ease and excitement to not only every baker, but to anyone who wanted to play in the kitchen. It was a magnetic pull I could not ignore; perhaps it is the instant yay they inject into anything they land upon, launching inspiration to create colorful sweets and sparking much childhood joy for everyone involved. I couldn’t explain why my connection to these crunchy little bits was so strong, but the creative in me knew this was where I was meant to be, and the entrepreneur in me felt reinvigorated. In June 2015, I created a small collection of Sprinkle Medleys—mixes of premium sprinkles that celebrate color and texture with enough wow to be the star of any show—and started an Etsy shop. Fast forward to today, and Sweetapolita has evolved into a global lifestyle brand, providing more happiness than I could have ever imagined possible. I believe we need to create our dream job, if it doesn’t already exist. <br\/><br\/>Whether it’s blogging, opening a bakeshop, starting an empire, or even simply being the noted baker of the family, I believe you can thrive if you set out to be different and memorable. Let’s do what we love, kick it up a notch, and bake the world happy!<br\/><br\/>Love, Rosie xo <\/p>",
+              "button": "Read more",
+              "text-color": "primary",
+              "background-color": ""
+            }
+          },
+          "043df50b-9052-485c-a10d-d6ecb49b668c": {
+            "type": "reveal-box",
+            "settings": {
+              "image-alignment": "left",
+              "ribbon": "",
+              "header": "<p>your creations deserve the best of the best<\/p>",
+              "copy": "<p>Founded in Rosie’s kitchen in Newcastle, Ontario, Canada in June 2015, Sweetapolita thrives on bringing awareness to the magic of the beloved sprinkle. As the original artisan sprinkle company, blazing a sprinkly trail is our mission, but there is so much more to our products than innovative colours and shapes. We work exclusively with gold-standard confectionery manufacturers in Canada, United States and Europe, creating custom sprinkles that make our hearts sing, and then we design, create and package all of our Sprinkle Medleys in house with love and care by The Sprinkle Squad.<br\/><br\/>Our standard for premium components in this industry is very rare, as inexpensive, lesser quality, look-a-like alternatives are readily available from other parts of the world, as commonly found among our competitors’ products. One of the several key distinctions between Sweetapolita and the many companies who now follow our lead, and mimic our work, is quality. Simply put, we insist on the best and only the best in every single bottle we create.<br\/><br\/>We stand by our mission to continue to innovate, never, ever, imitate. It is our sprinkly promise to you to continue to dream, create and offer unique products that are born out of inspiration and dedication to all things colourful and sweet. <\/p>",
+              "button": "Read more",
+              "text-color": "primary",
+              "background-color": "#ffe8f6",
+              "accent-1": "shopify:\/\/shop_images\/rainbow.png",
+              "accent-2": "shopify:\/\/shop_images\/polaroid.png"
+            }
+          },
+          "2fcf38c7-cb6f-4ea4-8ecf-03ce3a4d8476": {
+            "type": "reveal-box",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Sweetapolita_HQ_industrial.jpg",
+              "image-alignment": "left",
+              "ribbon": "",
+              "header": "<p>find your happy<\/p>",
+              "copy": "<p>We believe in happy. In times of yay and not-so-yay, we all yearn to feel the comforts of childhood and, whether we are sprinkling late-night ice cream sundaes, baking lofty birthday cakes, or putting the final touches on a formal confectionery masterpiece, there is no doubt that sprinkles make everything better. At the heart of our company is a genuine love and passion for colour, texture, quality and let us not forget, all-things-happy and sweet! <br\/><br\/>Sweetapolita celebrates the child in all of us and offers a wide range of premium and playful products, ranging from hundreds of unique, best-quality sprinkles and Sprinkle Medleys, epic Surprise Bags and Mystery Goodies, to adorable kitchen textiles, baking accessories and more. We offer countless specialty options, including Vegan, Gluten-Free, Kosher-Certified, naturally coloured and more. There is truly a sprinkle for everyone. Whether you are baking for work or whim, looking for a seriously cute gift, enjoy adding flair to your pancakes, or just want to bathe in sprinkles (we don’t ask questions), you found the mother ship.<br\/><br\/>It is our mission to provide a magical experience from the moment you twirl into our little slice of the internet, providing a visual confetti-explosion of colour and selection, exceptional customer service, fast turnround and an elevated unboxing experience (try us, you’ll see!). Nothing brings us more joy than to see the endless creativity that happens next but, we should warn you: sprinkles may cause extreme happiness and mega-smiles. <br\/><br\/>#sprinklesmakeeverythingbetter<br\/><br\/>Happy sprinkling! <\/p>",
+              "button": "Read more",
+              "text-color": "orange",
+              "background-color": ""
+            }
+          }
+        },
+        "block_order": [
+          "dd3dd846-d65b-4ae2-bf9e-69a068f7a443",
+          "043df50b-9052-485c-a10d-d6ecb49b668c",
+          "2fcf38c7-cb6f-4ea4-8ecf-03ce3a4d8476"
+        ],
+        "settings": {
+        }
+      },
+      "gallery--story": {
+        "type": "gallery--story",
+        "blocks": {
+          "92885df8-4b77-4c9d-988c-05531390ebf5": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Mask_Group.jpg"
+            }
+          },
+          "cdce79cd-8370-4db0-8f96-fd3f77087403": {
+            "type": "accent-image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Group_89_16f3709b-6233-4331-a882-b3164ab39a27.png"
+            }
+          },
+          "af5ebcac-c83d-4778-9422-266dcf45e305": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/image4.png"
+            }
+          },
+          "08b6f826-4c09-4d86-a805-5ee6d68b78d5": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/image5.png"
+            }
+          },
+          "770ce4e5-084c-4e2c-9a21-dcb2b5537091": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/image2.png"
+            }
+          }
+        },
+        "block_order": [
+          "92885df8-4b77-4c9d-988c-05531390ebf5",
+          "cdce79cd-8370-4db0-8f96-fd3f77087403",
+          "af5ebcac-c83d-4778-9422-266dcf45e305",
+          "08b6f826-4c09-4d86-a805-5ee6d68b78d5",
+          "770ce4e5-084c-4e2c-9a21-dcb2b5537091"
+        ],
+        "settings": {
+          "header": "<p>Life in Sprinkle Land<\/p>"
+        }
+      },
+      "cart": {
+        "type": "cart",
+        "settings": {
+          "header": "Shopping Cart",
+          "subtitle": "<p>Free shipping on orders over $75<\/p>",
+          "empty-title": "<p>Your cart is empty<\/p>",
+          "empty-copy": "<p>Your cart is empty. You can continue browsing <a href=\"\/collections\/all\">here<\/a>.<\/p>"
+        }
+      }
+    },
+    "content_for_index": [
+
+    ],
+    "blocks": {
+      "7878088468538493966": {
+        "type": "shopify:\/\/apps\/pop-ups-bars-by-wisepops\/blocks\/app-embed\/e7d7a4f7-0df4-4073-9375-5f36db513952",
+        "disabled": false,
+        "settings": {
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+    }
+  }
+}

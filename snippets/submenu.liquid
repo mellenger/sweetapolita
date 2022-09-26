@@ -1,0 +1,53 @@
+<nav class="{{ el }}__sub-menu-container {{ el }}__sub-menu-container--lvl-{{ level }}">
+  <div class="{{ el }}__sub-menu-container__inner {{ el }}__sub-menu-container__inner--lvl-{{ level }}">
+    <ul class="{{ el }}__sub-menu {{ el }}__sub-menu--lvl-{{ level }}">
+      {% for l in links %}
+        <li class="{{ el }}__sub-item {{ el }}__sub-item--lvl-{{ level }} {% if l.active %} active{% endif %}{% if linklists[l.handle] != empty %} has-sub{% endif %}">
+          <a href="{{ l.url }}"
+            {%- if name == 'header-menu' -%}
+              {% assign data = false %}
+              {%- if collections[l.handle].products.first -%}
+                {% assign data = collections[l.handle].products.first %}
+              {%- elsif all_products[l.handle] -%}
+                {% assign data = all_products[l.handle] %}
+              {%- endif -%}
+
+              {%- if data -%}
+                {% include 'header-menu-card-data', product: data %}
+              {%- endif -%}
+            {%- endif -%}
+            >{{ l.title }}</a>
+          {% if linklists[l.handle] != empty %}
+            {% assign level_up = level | plus: 1 %}
+            {% if linklists[l.handle] != empty %}
+              <i class="icon icon-chevron-down"></i>
+            {% endif %}
+            {% include 'submenu', el: el, links: linklists[l.handle].links, level: level_up %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {%- if name == 'header-menu' and level == 1 -%}
+      <!--Dummy data, filled by JS-->
+      {%- capture c_header -%}
+        <a href="#"></a>
+      {%- endcapture -%}
+      {%- capture c_footer -%}
+        <a class="h5 title-font" href="#">
+          <i class="icon icon-arrow-right"></i>
+          <span>View All</span>
+          <span></span>
+        </a>
+      {%- endcapture -%}
+      {%- include 'card',
+        c_display: 'header-menu-preview',
+        c_image: '',
+        c_header: c_header,
+        c_header_el: 'h5',
+        c_copy: '',
+        c_footer: c_footer,
+      -%}
+    {%- endif -%}
+  </div>
+</nav>

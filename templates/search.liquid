@@ -1,0 +1,58 @@
+
+
+{%- capture c_attr -%}
+  data-theme="secondary"
+{%- endcapture -%}
+
+{%- capture c_header -%}
+  {% if search.terms %}
+    "{{ search.terms | escape }}"
+  {% else %}
+    Search
+  {% endif %}
+{%- endcapture -%}
+
+{%- capture c_copy -%}
+  <form action="{{ routes.root_url }}search" method="get" role="search">
+    <div class="form-item form-item--inline">
+      <input name="q" type="search" id="search-field" placeholder="Search store..." value="{{ search.terms | escape }}" />
+      <input class="b" type="submit" value="Search" />
+    </div>
+  </form>
+
+  {% if search.performed %}
+    {% paginate search.results by 25 %}
+      {% if search.results_count == 0 %}
+        <p class="center color-grey-2">Your search for "{{ search.terms }}" did not yield any results.</p>
+      {% else %}
+        {% for item in search.results %}
+          {% assign el = 'search-result' %}
+          <a class="{{ el }} {{ el }}--{% if item.images[0] %}has{% else %}no{% endif %}-image" href="{{ item.url }}">
+            {% if item.images[0] %}
+              <img class="{{ el }}__img" src="{{ item.images[0] | product_img_url: '200x240', crop: 'center', format: 'jpg' }}" />
+            {% endif %}
+            <span class="{{ el }}__header h2 color-primary">{{ item.title }}</span>
+            <span class="{{ el }}__copy color-grey-2">{{ item.description | strip_html | default: 'Read more...' | truncatewords: 20, '...' }}</span>
+          </a>
+        {% endfor %}
+      {% endif %}
+
+      {% if paginate.pages > 1 %}
+        <div class="paginate">{{ paginate | default_pagination }}</div>
+      {% endif %}
+
+    {% endpaginate %}
+  {% endif %}
+{%- endcapture -%}
+
+{% include 'card',
+c_attr: c_attr,
+c_display: 'page',
+c_modifier: 'copy-max',
+c_header: c_header,
+c_header_el: 'h1',
+c_header_modifier: 'h3 title-font color-secondary center',
+c_copy: c_copy,
+%}
+
+{% section 'factoids' %}

@@ -1,0 +1,10 @@
+{% assign subEl = 'quantity-field' %}
+<span class="{{ subEl }} {{ subEl }}--{% if static %}static{% else %}dynamic{% endif %}">
+  <span class="{{ subEl }}__inner">
+    <span class="{{ subEl }}__add icon icon-plus"{% unless static %} rv-if="item.price | gt 0" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1"{% endunless %}></span>
+
+    <input class="{{ subEl }}__field" type="number" name="quantity"{% if static %} value="1"{% else %} rv-enabled="item.price | gt 0" rv-value="item.quantity"{% endif %} />
+
+    <span class="{{ subEl }}__sub icon icon-minus"{% unless static %} rv-if="item.price | gt 0" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1"{% endunless %}></span>
+  </span>
+</span>

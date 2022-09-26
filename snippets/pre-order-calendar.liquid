@@ -1,0 +1,10 @@
+<script type="text/javascript">
+  window.pocSettings = {
+    pId: "{{ all_products[settings.poc__id].id }}",
+    vId: "{{ all_products[settings.poc__id].variants.first.id }}",
+    confirmation: "{{ settings.poc__confirmation }}",
+    ribbon: "{{ settings.poc__ribbon }}",
+  };
+</script>
+{{ 'pre-order-calendar.js' | asset_url | script_tag }}
+{{ 'pre-order-calendar.css' | asset_url | stylesheet_tag }}

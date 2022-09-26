@@ -1,0 +1,26 @@
+{% assign el = 'product-nutrition-information' %}
+
+{% if product.metafields.custom_fields.nutrition_image != blank or product.metafields.custom_fields.nutrition_copy != blank %}
+  <div class="{{ el }}">
+    <div class="{{ el }}__header">
+      <h4>Nutrition Information</h4>
+      <span class="{{ el }}__sub icon icon-minus"></span>
+      <span class="{{ el }}__plus icon icon-plus"></span>
+    </div>
+    <div class="{{ el }}__content">
+      {% if product.metafields.custom_fields.nutrition_copy != blank %}
+      <div class="{{ el }}__copy">
+        {{ product.metafields.custom_fields.nutrition_copy }}
+      </div>
+      {% endif %}
+      {% if product.metafields.custom_fields.nutrition_image != blank %}
+      <div class="{{ el }}__image">
+        {{ product.metafields.custom_fields.nutrition_image }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {{ 'product-nutrition-information.js' | asset_url | script_tag }}
+{% endif %}
+

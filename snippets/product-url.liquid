@@ -1,0 +1,4 @@
+{% assign productUrl = product.url %}
+{% if parent_url != blank %}
+  {% assign productUrl = product.url | replace: routes.root_url, '/' | prepend: parent_url %}
+{% endif %}

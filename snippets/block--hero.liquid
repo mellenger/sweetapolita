@@ -1,0 +1,46 @@
+{%- capture c_modifier -%}
+  c-hero--align-{{ block.settings.alignment }}
+  c-hero--theme-{{ block.settings.theme }}
+  {% if block.settings.modifier__mobile-image-separate %}
+    c-hero--mobile-image-separate
+  {% endif %}
+{%- endcapture -%}
+{%- capture c_attr -%}
+  {% if block.settings.image %}
+    style="background-image: url({{ block.settings.image | img_url: '2000x' , crop: 'center' }});"
+  {% endif %}
+{%- endcapture -%}
+{%- capture c_context -%}
+  {% if block.settings.image_mobile and block.settings.modifier__mobile-image-separate %}
+    <img class="c-hero__image-mobile" src="{{ block.settings.image_mobile | img_url: '600x' }}" />
+  {% endif %}
+{%- endcapture -%}
+{%- capture c_header -%}
+  {{ block.settings.header }}
+{%- endcapture -%}
+{%- capture c_copy -%}
+  {% if block.settings.subtitle %}
+    <h2>{{ block.settings.subtitle }}</h2>
+  {% endif %}
+  {{ block.settings.copy }}
+{%- endcapture -%}
+{%- capture c_footer -%}
+  {% if block.settings.url and block.settings.button != blank %}
+    <span class="b b--shadow">{{ block.settings.button }}</span>
+  {% endif %}
+{%- endcapture -%}
+
+<a href="{{ block.settings.url }}">
+{% include 'card',
+  c_display: 'hero',
+  c_modifier: c_modifier,
+  c_attr: c_attr,
+  c_context: c_context,
+  c_header: c_header,
+  c_header_el: 'h3',
+  c_header_modifier: 'title-font',
+  c_image: '',
+  c_copy: c_copy,
+  c_footer: c_footer,
+%}
+</a>

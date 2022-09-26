@@ -1,0 +1,10 @@
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'hero' %}
+      {% include 'block--hero', block: block %}
+    {% when 'product-grid' %}
+      {% include 'block--product-grid', block: block %}
+    {% when 'reveal-box' %}
+      {% include 'block--reveal-box', block: block %}
+  {% endcase %}
+{% endfor %}

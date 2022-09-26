@@ -1,0 +1,11 @@
+{% assign product_vendor_handle = product.vendor | handle %}
+{% if collections[product_vendor_handle].handle == product_vendor_handle %}
+  {% assign vendor_url = collections[product_vendor_handle].url %}
+{% else %}
+  {% assign vendor_url = product.vendor | url_for_vendor %}
+{% endif %}
+<p class="{{ el }}__ribbon u" itemprop="brand">{{ product.vendor | link_to: vendor_url }}</p>
+<h1 class="{{ el }}__header">{{ product.title }}</h1>
+{% if shop.domain contains '.com' %}
+  {% include 'yotpo__stars' %}
+{% endif %}

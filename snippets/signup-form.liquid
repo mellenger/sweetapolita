@@ -1,0 +1,20 @@
+<form action="https://sweetapolitashop.us1.list-manage.com/subscribe/post?u=aab34d17ad0411c90fd023ae0&amp;id=abf60b0b8b" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+  {% assign el = 'signup-form' %}
+  <div class="{{ el }} {% if form.posted_successfully? or form.errors %}js-scroll-to{% endif %}">
+    <div class="{{ el }}__inner">
+      <div class="{{ el }}__header">{{ title | default: 'Stay up to date with the sweetest news + offers!' }}</div>
+      <div class="{{ el }}__form">
+        {% if form.posted_successfully? %}
+          {{ 'layout.signup.post_success' | t }}
+        {% else %}
+          {% for field in form.errors %}
+            <div>{{ field | capitalize }} {{ form.errors.messages[field] }}</div>
+          {% endfor %}
+          <!-- <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/> -->
+          <input type="email" placeholder="Email address" name="EMAIL" />
+          <input type="submit" name="subscribe" value="Subscribe" class="b" />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</form>

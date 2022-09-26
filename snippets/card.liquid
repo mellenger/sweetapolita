@@ -1,0 +1,61 @@
+{% assign cEl = 'c-' | append: c_display %}
+
+<!--CARD: {{ c_display }}-->
+<div class="c {{ cEl }} {{ cEl }}--type-{{ c_type | default: 'default' }} {{ c_modifier }}" {{ c_attr }}>
+  {{ c_context }}
+  {% if c_url %}
+    <a href="{{ c_url }}" class="{{ cEl }}__url">
+  {% endif %}
+  {% if c_image and c_landscape %}
+    <{{ c_image_el | default: 'div' }}
+      class="{{ cEl }}__image {{ c_image_modifier }}">{{ c_image }}
+    </{{ c_image_el | default: 'div' }}>
+  {% endif %}
+  <div class="{{ cEl }}__inner">
+    {% if c_ribbon %}
+      <{{ c_ribbon_el | default: 'div' }} class="{{ cEl }}__ribbon {{ c_ribbon_modifier }}">{{ c_ribbon }}</{{ c_ribbon_el | default: 'div' }}>
+    {% endif %}
+    {% if c_image %}
+      {% unless c_landscape %}
+        <{{ c_image_el | default: 'div' }} class="{{ cEl }}__image {{ c_image_modifier }}">{{ c_image }}</{{ c_image_el | default: 'div' }}>
+      {% endunless %}
+    {% endif %}
+    {% if c_header %}
+      <{{ c_header_el | default: 'div' }} class="{{ cEl }}__header {{ c_header_modifier }}">{{ c_header }}</{{ c_header_el | default: 'div' }}>
+    {% endif %}
+    {% if c_copy %}
+      <{{ c_copy_el | default: 'div' }} class="{{ cEl }}__copy {{ c_copy_modifier }}">{{ c_copy }}</{{ c_copy_el | default: 'div' }}>
+    {% endif %}
+    {% if c_footer %}
+      <{{ c_footer_el | default: 'div' }} class="{{ cEl }}__footer {{ c_footer_modifier }}">{{ c_footer }}</{{ c_footer_el | default: 'div' }}>
+    {% endif %}
+  </div>
+  {% if c_url %}
+    </a>
+  {% endif %}
+</div>
+<!--END CARD: {{ c_display }}-->
+
+{% comment %}Necessary, all variables need to be unassigned{% endcomment %}
+{% assign c_display = nil %}
+{% assign c_context = nil %}
+{% assign c_url = nil %}
+{% assign c_type = nil %}
+{% assign c_modifier = nil %}
+{% assign c_attr = nil %}
+{% assign c_landscape = nil %}
+{% assign c_image = nil %}
+{% assign c_image_el = nil %}
+{% assign c_image_modifier = nil %}
+{% assign c_ribbon = nil %}
+{% assign c_ribbon_el = nil %}
+{% assign c_ribbon_modifier = nil %}
+{% assign c_header = nil %}
+{% assign c_header_el = nil %}
+{% assign c_header_modifier = nil %}
+{% assign c_copy = nil %}
+{% assign c_copy_el = nil %}
+{% assign c_copy_modifier = nil %}
+{% assign c_footer = nil %}
+{% assign c_footer_el = nil %}
+{% assign c_footer_modifier = nil %}

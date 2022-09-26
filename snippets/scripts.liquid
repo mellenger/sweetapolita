@@ -1,0 +1,52 @@
+{{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+<script>jQuery('html').removeClass('no-js').addClass('js');</script>
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.6.1/jquery.zoom.min.js'
+| script_tag }}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.1.0/rivets-cart.min.js' | script_tag }}
+<script type="text/javascript">
+  jQuery(function () {
+    CartJS.init({{ cart | json }}, {
+      dataAPI: true,
+      requestBodyClass: 'cart-loading',
+      currency: '{{ shop.currency }}',
+      moneyFormat: '{{ shop.money_format }}',
+      moneyWithCurrencyFormat: '{{ shop.money_with_currency_format }}',
+      rivetsModels: {
+        customer: {{ customer | json }},
+      }
+    });
+  });
+
+  var Shopify = Shopify || {};
+  Shopify.money_format = {{ shop.money_with_currency_format | json }};
+  Shopify.rootUrl = '{{ routes.root_url }}';
+</script>
+
+{% if shopify.domain contains '.com' %}
+  <script type="text/javascript">
+    (function e() { var e = document.createElement("script"); e.type = "text/javascript", e.async = true, e.src = "//staticw2.yotpo.com/DCT7YU3eOMMHErGcvBlJdLmhNHvxg9WHqrhh4Dfy/widget.js"; var t = document.getElementsByTagName("script")[0]; t.parentNode.insertBefore(e, t) })();
+  </script>
+  {{ 'yotpo.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+{% if settings.poc__enable %}
+  {% include 'pre-order-calendar' %}
+{% endif %}
+
+{{ 'theme.js'  | asset_url | script_tag }}
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+{% assign gId = 'G-9ZS49JZXRN' %}
+{% if shopify.domain contains '.com' %}
+  {% assign gId = 'G-LFY3831HDV' %}
+{% endif %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ gId }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{ gId }}');
+</script>

@@ -1,0 +1,65 @@
+{%- capture attributeCollections -%}
+{{ settings.p-attr__vegan }}
+{{ settings.p-attr__kosher }}
+{{ settings.p-attr__gluten_free }}
+{{ settings.p-attr__dairy_free }}
+{{ settings.p-attr__vegetarian }}
+{{ settings.p-attr__dairy_kosher }}
+{%- endcapture -%}
+{% assign attributeCollections = attributeCollections | newline_to_br | split: '<br />' %}
+
+{% assign productCollections = '' %}
+{% for c in product.collections %}
+  {% assign productCollections = productCollections | append: '|' | append: c.handle %}
+{% endfor %}
+{% assign productCollections = productCollections | split: '|' %}
+
+{% assign isEmpty = true %}
+
+{% assign el = 'product-attributes' %}
+
+{%- capture attributes -%}
+  <div class="{{ el }}__items">
+    {% for c in attributeCollections %}
+      {% assign tmp = c | strip %}
+      {% if tmp != blank and productCollections contains tmp %}
+        {% assign isEmpty = false %}
+        {% assign tmpCollection = collections[tmp] %}
+        {% assign tmpColors = tmpCollection.metafields.custom_fields.product_attr__color | json_parse %}
+        {% assign tmpUrl = tmpCollection.url %}
+        {%- capture tmpAttr -%}
+          id="{{ 'product-attr-' | append:
+          tmpCollection.metafields.custom_fields.product_attr__title | handleize }}"
+        {%- endcapture -%}
+        {%- capture tmpImage -%}
+          <div style="background-color: {{ tmpColors[1].product_attr__color }};" class="c-product-attr__image-wrapper">
+            {{ tmpCollection.metafields.custom_fields.product_attr__image }}
+          </div>
+        {%- endcapture -%}
+        {%- capture tmpHeader -%}
+          <span style="color: {{ tmpColors[0].product_attr__color }};">
+            {{ tmpCollection.metafields.custom_fields.product_attr__title }}
+            <span class="c-product-attr__link">
+              See all {{ tmpCollection.metafields.custom_fields.product_attr__title | downcase }} products
+            </span>
+          </span>
+        {%- endcapture -%}
+
+        {% include 'card',
+          c_display: 'product-attr',
+          c_attr: tmpAttr,
+          c_url: tmpUrl,
+          c_image: tmpImage,
+          c_header: tmpHeader,
+          c_header_el: 'h2',
+          c_copy_modifier: 'color-grey-3',
+        %}
+        {% comment %} c_copy: tmpCollection.metafields.custom_fields.product_attr__copy, {% endcomment %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{%- endcapture -%}
+
+{% if isEmpty == false %}
+  <div class="{{ el }}">{{ attributes }}</div>
+{% endif %}

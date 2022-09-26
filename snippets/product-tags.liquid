@@ -1,0 +1,24 @@
+{%- capture tags -%}
+best_seller|Bestseller|star
+new|New|heart
+sale|Sale|tag
+{%- endcapture -%}
+{% assign tags = tags | newline_to_br | split: '<br />' %}
+
+<div class="tags">
+  {% assign tEl = 'tag' %}
+  {% if product.available == false %}
+    <div class="{{ tEl }} {{ tEl }}--out-of-stock">Temporarily Out of Stock</div>
+  {% else %}
+    {% for t in tags %}
+      {% assign x = t | strip %}
+      {% assign tag = x | split: '|' %}
+      {% if product.metafields.custom_fields[tag[0]] == 1 %}
+        <div class="{{ tEl }} {{ tEl }}--{{ tag[0] | replace: '_', '-' }}">
+          {{ tag[1] }}
+          <i class="{{ tEl }}__icon icon icon-{{ tag[2] }}"></i>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>

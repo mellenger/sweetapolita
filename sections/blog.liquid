@@ -1,0 +1,65 @@
+{% assign el = 'blog' %}
+<!-- {% assign filters = "All|Letter From Rosie|Health|News|Lifestyle" | split: '|' %} -->
+{% assign filters = "All Categories|cakes|candy|cookies|cupcakes|frostings|small sweets" | split: '|' %}
+{% paginate blog.articles by 9 %}
+  <div class="{{ el }} {% unless paginate.next %}{{ el }}--last{% endunless %}">
+    <div class="{{ el }}__inner">
+      {% if paginate.current_page == 1 %}
+        <h1 class="{{ el }}__header color-primary title-font">{{ section.settings.header }}</h1>
+        <ul class="{{ el }}__filter">
+          {% for i in filters %}
+            <li class="{{ el }}__filter-item{% if forloop.first %} active{% endif %}">
+              <a href="{{ i }}" aria-label="Filter articles by {{ i }}">{{ i }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <div class="{{ el }}__content">
+        {% for article in blog.articles %}
+          <div class="{{ el }}__content-item">
+            {% assign c_footer = null %}
+            <!-- 585x420 -->
+            {%- capture c_attr -%}
+              data-category="{{ article.tags[0] }}"
+            {%- endcapture -%}
+            {%- capture c_image -%}
+              <a href="{{ article.url }}" style="background-image: url({{ article.image | img_url: '390x280', crop: 'center', format: 'jpg' }}"></a>
+            {%- endcapture -%}
+            {%- capture c_ribbon -%}
+              <a href="{{ blog.url }}#/{{ article.tags[0] }}">{{ article.tags[0] }}</a>
+            {%- endcapture -%}
+            {%- capture c_header -%}
+              <a href="{{ article.url }}">{{ article.title  }}</a>
+            {%- endcapture -%}
+            {% include 'card',
+              c_display: 'article-teaser',
+              c_ribbon: c_ribbon,
+              c_header: c_header,
+              c_header_el: 'h2',
+              c_image: c_image,
+              c_footer: c_footer,
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {{ el | append: '.css' | asset_url | stylesheet_tag }}
+  {{ el | append: '.js' | asset_url | script_tag }}
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header",
+      "default": "Recipes + Inspo"
+    }
+  ],
+  "presets": []
+}
+{% endschema %}

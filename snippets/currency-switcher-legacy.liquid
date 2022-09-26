@@ -1,0 +1,23 @@
+{% assign subEl = 'currency-switcher' %}
+<div class="{{ subEl }} {{ subEl }}--legacy">
+  <span class="{{ subEl }}__filled">
+    {% if canadianStore %}
+      CAD
+    {% else %}
+      USD
+    {% endif %}
+    <i class="icon icon-chevron-down-2"></i>
+  </span>
+  <ul class="{{ subEl }}__list">
+    <li class="{{ subEl }}__list-item {% if canadianStore %}{{ subEl }}__list-item--selected{% endif %}">
+      <a href="https://sweetapolitashop.ca/">
+        CAD
+      </a>
+    </li>
+    <li class="{{ subEl }}__list-item {% if canadianStore == false %}{{ subEl }}__list-item--selected{% endif %}">
+      <a href="https://sweetapolitashop.com/">
+        USD
+      </a>
+    </li>
+  </ul>
+</div>

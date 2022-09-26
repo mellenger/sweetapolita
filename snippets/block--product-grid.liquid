@@ -1,0 +1,22 @@
+{%- capture header -%}
+  {%- if block.settings.icon -%}
+    {{ block.settings.icon | img_url: '165x' , crop: 'center' | img_tag }}
+  {%- endif -%}
+  {{ block.settings.header }}
+{%- endcapture -%}
+{% assign products = collections[block.settings.collection].products %}
+{% assign count = products | size %}
+
+{% if header %}
+  {% capture header %}
+    {{ header }}
+    {% if products %}
+      <a href="{{ collections[block.settings.collection].url }}">Shop All ({{ count }})</a>
+    {% endif %}
+  {% endcapture %}
+{% endif %}
+{% include 'product-grid',
+  header: header,
+  products: products,
+  count: block.settings.count,
+%}

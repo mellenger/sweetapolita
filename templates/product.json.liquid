@@ -1,0 +1,15 @@
+{% layout none %}
+{%- capture json -%}
+{
+  id: {{ all_products[product.handle].id }},
+  handle: {{ product.handle | json }},
+  metafields: {
+    custom_fields: {
+      {%- for p in product.metafields.custom_fields -%}
+        {{ p[0] }}: {{ p[1] }},
+      {%- endfor -%}
+    },
+  }
+}
+{%- endcapture -%}
+{{ json }}

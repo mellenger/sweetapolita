@@ -1,0 +1,27 @@
+{% assign el = 'country-selector' %}
+<span class="{{ el }}">
+  {% if canadianStore %}
+    CAD
+  {% else %}
+    USD
+  {% endif %}
+  <i class="icon icon-chevron-down-2"></i>
+</span>
+<ul class="{{ el }}__list">
+  <li class="{{ el }}__list-item">
+    <a href="https://sweetapolitashop.ca/">
+      {% if canadianStore %}
+        <i class="icon icon-checkmark"></i>
+      {% endif %}
+      CAD
+    </a>
+  </li>
+  <li class="{{ el }}__list-item">
+    <a href="https://sweetapolitashop.com/">
+      {% if canadianStore == false %}
+        <i class="icon icon-checkmark"></i>
+      {% endif %}
+      USD
+    </a>
+  </li>
+</ul>

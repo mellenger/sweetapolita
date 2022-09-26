@@ -1,0 +1,24 @@
+{% assign el = 'product-grid' %}
+<div class="{{ el }} {{ el }}--{{ grid | default: 'fourths' }} {{ modifier }}">
+  <div class="{{ el }}__inner">
+    {% if header %}
+      <h3 class="{{ el }}__header h2 title-font color-primary">{{ header }}</h3>
+    {% endif %}
+    {% if copy %}
+      <div class="{{ el }}__copy">{{ copy }}</div>
+    {% endif %}
+    <div class="{{ el }}__items">
+      {{ items }}
+      {% for product in products %}
+{% if product.handle contains "docapp-free-gift-" %}{% continue %}{% endif %}
+
+        {% if count == false or forloop.index0 < count %}
+          <div class="{{ el }}__item">
+            {% include 'product-card', product: product %}
+          </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% assign items = nil %}

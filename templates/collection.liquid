@@ -1,0 +1,39 @@
+{% assign cEl = 'collection' %}
+<div class="{{ cEl }}">  
+  {% assign toggle_banner = collection.metafields.custom.collection_toggle | strip %}
+  {% if toggle_banner == 'true' %}
+    <div class="{{ cEl }}__inner_value">      
+      <img class="collection-hero desktop-show" src="{{ collection.metafields.custom.desktop_image.value | img_url: 'master' }}"> 
+      <img class="collection-hero mobile-show" src="{{ collection.metafields.custom.mobile_image.value| img_url: 'master' }}"> 
+      <div class="button-wrapper">
+        <a href="{{ collection.metafields.custom.cta_link }}" class="">
+          {{ collection.metafields.custom.cta_title }}
+        </a>        
+      </div>
+    </div>
+  {% endif %}
+  
+  <div class="{{ cEl }}__inner">
+    {% paginate collection.products by 12 %}
+    <h1 class="{{ cEl }}__title h3 title-font color-secondary">
+      {{ collection.title }}
+    </h1>
+    <form action="">
+      <input type="hidden" name="page" value="{{ paginate.current_page }}" />
+      <select class="collection__sort" name="sort_by">
+        <option>Sort by</option>
+        <option value="price-ascending">Price (Low to High)</option>
+        <option value="price-descending">Price (High to Low)</option>
+        <option value="best-selling">Best-selling</option>
+        <option value="created-descending">New</option>
+      </select>
+    </form>
+    <div class="{{ cEl }}__contents">
+      {% assign collectionProducts = collection.products | sort %} {% include
+      'product-grid', products: collection.products, parent_url: collection.url,
+      count: false, %} {% if paginate.pages > 1 %}
+      <div class="paginate">{{ paginate | default_pagination }}</div>
+      {% endif %} {% endpaginate %}
+    </div>
+  </div>
+</div>

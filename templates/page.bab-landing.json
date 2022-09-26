@@ -1,0 +1,109 @@
+{
+  "sections": {
+    "bab-hero": {
+      "type": "bab-hero",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/hero_69a8d5e8-cd4c-451e-97f5-2cf561c49270.jpg",
+        "title": "<p>Build a Sprinkle Box<\/p>",
+        "copy": "",
+        "box-title": "<p><strong>RAINBOW BUILD-A-BOX<\/strong><\/p>",
+        "box-copy": "<p>Too many sprinkle options? Start with a sampler box of our 2oz bottles also perfect for gifting, in this gorgeous rainbow gift box. <\/p><p>Select your favorite sprinkles or click \"RANDOM\" to autofill your box with all kinds of happy. Choose a 6-pack, 9-pack or double up for the full 2-tier, 15-pack.<\/p><p>Ideal for sampling heaps of different Sprinkle Medleys spanning many colors, themes and dietary requirements.<\/p><p>There is something for everyone! Ship to yourself or directly to your (lucky) recipient with a personalized gift message for the ultimate Sweetapolita experience.<\/p><p>Ready, set, sprinkle...<\/p>",
+        "box-image": "shopify:\/\/shop_images\/20220219_Sweetapolita_Easter19840.jpg",
+        "box-link__title": "Start Now",
+        "box-link__url": "shopify:\/\/pages\/build-a-box"
+      }
+    },
+    "bab-pre-filled": {
+      "type": "bab-pre-filled",
+      "blocks": {
+        "785381d2-bdad-4c92-b409-f4fe21e0432b": {
+          "type": "box",
+          "settings": {
+            "product": "birthday-dreams-6-bottles"
+          }
+        },
+        "727f051c-1111-44aa-8f0b-d8a2643b96ad": {
+          "type": "box",
+          "settings": {
+            "product": "twirls-twinkles-gift-box-6-x-2oz-bottles"
+          }
+        },
+        "0f81a4a7-aa32-4d00-a28e-6b03d58d42a3": {
+          "type": "box",
+          "settings": {
+            "product": "everyday-yay-gift-box-6-x-2oz-bottles"
+          }
+        }
+      },
+      "block_order": [
+        "785381d2-bdad-4c92-b409-f4fe21e0432b",
+        "727f051c-1111-44aa-8f0b-d8a2643b96ad",
+        "0f81a4a7-aa32-4d00-a28e-6b03d58d42a3"
+      ],
+      "settings": {
+        "title": "<p>Pre-Curated Gift Boxes<\/p>",
+        "copy": "<p>READY-TO-GO SPRINKLE BOXES FILLED WITH ROSIE'S FAVES!<\/p>"
+      }
+    },
+    "factoids": {
+      "type": "factoids",
+      "disabled": true,
+      "blocks": {
+        "b937bb8f-b52a-4668-ad10-3e3ee9a324b4": {
+          "type": "factoid",
+          "settings": {
+            "theme": "primary",
+            "image": "shopify:\/\/shop_images\/Frame_79.png",
+            "header": "<p>sweetapolita cares<\/p>",
+            "copy": "<p>It is part of our mission to give back in any way we can. Sweetapolita actively donates to several non-profit organizations, both locally and globally. <\/p>",
+            "url": ""
+          }
+        },
+        "fb31c8bc-823f-40c5-9486-cbd4d3237813": {
+          "type": "factoid",
+          "settings": {
+            "theme": "lime",
+            "image": "shopify:\/\/shop_images\/Frame_80.png",
+            "header": "<p>Gold standard<br\/>manufacturing<\/p>",
+            "copy": "<p>We insist on the best! One of the several key distinctions between Sweetapolita and our competitors is quality. Our food products are manufactured by gold standard in Canada, Europe and the United States. Simply put, we are committed to premium quality in every single bottle we create.<\/p>",
+            "url": ""
+          }
+        },
+        "9f0ac7e2-762e-4661-86fc-a7f71de04c75": {
+          "type": "factoid",
+          "settings": {
+            "theme": "turquoise",
+            "image": "shopify:\/\/shop_images\/Frame_81.png",
+            "header": "<p>The original artisan sprinkle co.<\/p>",
+            "copy": "<p>Female-founded in Canada in 2015 by baker Rosie Alyea, a genuine love for the baking community and innovation is at the heart of Sweetapolita. Often imitated, but never duplicated.<\/p>",
+            "url": ""
+          }
+        },
+        "c0d355d6-1f61-4bf4-8aca-fa24f89bb7ed": {
+          "type": "factoid",
+          "settings": {
+            "theme": "primary",
+            "image": "shopify:\/\/shop_images\/Frame_82.png",
+            "header": "<p>Sweet value<\/p>",
+            "copy": "<p>We believe in an honest pricing strategy, offering the best value on all of our products, rather than inflated pricing to offset countless discount codes. Offering tiered value on larger sizing, bundled savings, exciting promotions and free gift with purchase are just some of the many ways we provide value!<\/p>",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "b937bb8f-b52a-4668-ad10-3e3ee9a324b4",
+        "fb31c8bc-823f-40c5-9486-cbd4d3237813",
+        "9f0ac7e2-762e-4661-86fc-a7f71de04c75",
+        "c0d355d6-1f61-4bf4-8aca-fa24f89bb7ed"
+      ],
+      "settings": {
+        "header": ""
+      }
+    }
+  },
+  "order": [
+    "bab-hero",
+    "bab-pre-filled",
+    "factoids"
+  ]
+}

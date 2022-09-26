@@ -1,0 +1,52 @@
+{%- capture attributeCollections -%}
+{{ settings.p-attr__vegan }}
+{{ settings.p-attr__kosher }}
+{{ settings.p-attr__gluten_free }}
+{{ settings.p-attr__dairy_free }}
+{{ settings.p-attr__vegetarian }}
+{{ settings.p-attr__dairy_kosher }}
+{%- endcapture -%}
+{% assign attributeCollections = attributeCollections | newline_to_br | split: '<br />' %}
+
+{% assign productCollections = '' %}
+{% for c in product.collections %}
+  {% assign productCollections = productCollections | append: '|' | append: c.handle %}
+{% endfor %}
+{% assign productCollections = productCollections | split: '|' %}
+
+{% assign isEmpty = true %}
+
+{% assign el = 'product-attributes-teasers' %}
+
+{%- capture teaser -%}
+  <h4 class="{{ el }}__header">Dietary Information</h4>
+  <div class="{{ el }}__items">
+    {% for c in attributeCollections %}
+      {% assign tmp = c | strip %}
+      {% if tmp != blank and productCollections contains tmp %}
+        {% assign isEmpty = false %}
+        {% assign tmpCollection = collections[tmp] %}
+        {% assign tmpUrl = 'product-attr-' | append: tmpCollection.metafields.custom_fields.product_attr__title | handleize | prepend: '#' %}
+        {% assign tmpImage = tmpCollection.metafields.custom_fields.product_attr__image %}
+        {%- capture tmpAttr -%}
+          {% assign tmpColors = tmpCollection.metafields.custom_fields.product_attr__color | json_parse %}
+          style="color: {{ tmpColors[0].product_attr__color }};"
+        {%- endcapture -%}
+
+        {% include 'card',
+          c_display: 'product-attr-teaser',
+          c_attr: tmpAttr,
+          c_url: tmpUrl,
+          c_image: tmpImage,
+          c_image_modifier: 'dietary-icon'
+          c_header: tmpCollection.metafields.custom_fields.product_attr__title,
+          c_header_el: 'h6',
+        %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{%- endcapture -%}
+
+{% if isEmpty == false %}
+  <div class="{{ el }}">{{ teaser }}</div>
+{% endif %}

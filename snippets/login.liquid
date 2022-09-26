@@ -1,0 +1,15 @@
+{% assign el = 'login' %}
+{% unless dispaly %}
+  {% assign display = 'default' %}
+{% endunless %}
+<div class="{{ el }} {{ el }}--{{ display }} {{ modifier }}">
+  <div class="{{ el }}__inner">
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <a href="{{ routes.root_url }}account" title="Hi {{ customer.name | split: ' ' | slice: 0,1 }}"><i class="icon icon-smile"></i></a>
+      {% else %}
+        <a href="{{ routes.root_url }}account/login" title="Login"><i class="icon icon-smile"></i></a>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>

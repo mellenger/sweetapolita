@@ -1,0 +1,40 @@
+{% form 'localization' %}
+  {% assign subEl = 'currency-switcher' %}
+  <div class="{{ subEl }}">
+    <div class="{{ subEl }}__form">
+      <select name="country_code">
+        {% for country in localization.available_countries %}
+          {% if country.iso_code == 'CA' or country.iso_code == 'US' %}
+            <option value="{{ country.iso_code }}" {%- if country == localization.country %} selected="selected"{% endif %}>
+              {{ country.iso_code }}
+            </option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <input class="{{ subEl }}__submit" type="submit" value="Update">
+    </div>
+    <span class="{{ subEl }}__filled">
+      {% if localization.country.iso_code == 'US' %}
+        USD
+      {% else %}
+        CAD
+      {% endif %}
+      <i class="icon icon-chevron-down-2"></i>
+    </span>
+    <ul class="{{ subEl }}__list">
+      {% for country in localization.available_countries %}
+        {% if country.iso_code == 'CA' or country.iso_code == 'US' %}
+          <li class="{{ subEl }}__list-item {% if country == localization.country %}{{ subEl }}__list-item--selected{% endif %}">
+            <a>
+              {% if country.iso_code == 'US' %}
+                USD
+              {% else %}
+                {{ country.iso_code }}D
+              {% endif %}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endform %}

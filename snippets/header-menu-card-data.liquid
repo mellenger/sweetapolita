@@ -1,0 +1,10 @@
+{%- capture data -%}
+  data-header-card-data="true"
+  data-pid="{{ product.id }}"
+  data-url="{{ product.url }}"
+  data-header="{{ product.title }}"
+  data-copy="{{ product.description | strip_html | strip_newlines | truncatewords: 10, '...' | escape }}"
+  data-img="{{ product.selected_or_first_available_variant.featured_image | default:
+  product.featured_image | img_url: '270x330', crop: 'center', format: 'jpg' }}"
+{%- endcapture -%}
+{{ data }}

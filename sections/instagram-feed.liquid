@@ -1,0 +1,50 @@
+{%- capture c_header -%}
+  {%- assign tmp = section.settings.header | split: '' -%}
+  {%- for i in tmp -%}
+    {%- if i == ' ' -%}
+     {{ i }}
+    {%- else -%}
+     <span>{{ i }}</span>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{% include 'card',
+  c_display: 'ig-feed',
+  c_header: c_header,
+  c_header_el: 'h3',
+  c_header_modifier: 'title-font',
+  c_copy: section.settings.feed-title,
+  c_footer: section.settings.gallery,
+%}
+
+{% schema %}
+{
+  "name": "Covet.pics - Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Title",
+      "default": "Join the Sprinkle Squad"
+    },
+    {
+      "type": "text",
+      "id": "feed-title",
+      "label": "Feed title",
+      "default": "Instagram feed"
+    },
+    {
+      "type": "textarea",
+      "id": "gallery",
+      "label": "Gallery Embed Code"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Covet.pics gallery"
+    }
+  ]
+}
+{% endschema %}

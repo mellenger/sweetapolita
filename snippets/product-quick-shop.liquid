@@ -1,0 +1,131 @@
+{%- assign variantsDisplayed = 0 -%}
+{% assign c_type = product.type | handleize %}
+
+{% assign tmpEl = 'quick-shop' %}
+{% include 'product-url' %}
+{% assign tmpUrl = productUrl %}
+{%- capture c_attr -%}
+  data-pid="{{ product.id }}"
+  data-theme="{{ product.metafields.custom_fields.theme }}"
+  data-cart-submit
+  {% if c_type == 'pre-build-box' %}
+    data-hash='{{ product.metafields.custom_fields.pre-built_json | replace: '=>' , ':' }}'
+  {% endif %}
+{%- endcapture -%}
+
+{%- capture c_context -%}
+  <a class="close-quick icon icon-close color-grey-3" href="#"></a>
+{%- endcapture -%}
+
+{%- capture c_image -%}
+  <a href="{{ tmpUrl }}">
+    {% if c_type == 'pre-build-box' %}
+      {{ product.featured_image | img_url: '400x' | img_tag }}
+    {% else %}
+      {{ product.featured_image | img_url: '300x420', crop: 'center', format: 'jpg' | img_tag }}
+    {% endif %}
+  </a>
+{%- endcapture -%}
+
+{%- capture c_header -%}
+  <a href="{{ tmpUrl }}">{{ product.title }}</a>
+{%- endcapture -%}
+
+{% capture productPrices %}
+  {% for variant in product.variants %}
+    {%- capture success -%}
+      <span class="c-{{ tmpEl }}__price-item" data-price-multiplier="{{ variant.price }}">
+        {{ variant.price | money_with_currency }}
+      </span>
+    {%- endcapture -%}
+    {% include 'variant-location-validator', success: success %}
+  {% endfor %}
+{% endcapture %}
+
+{%- capture c_copy -%}
+  {% if shop.domain contains '.com' %}
+    {% include 'yotpo__stars' %}
+  {% endif %}
+  <h3 class="c-{{ tmpEl }}__price color-primary">
+    {{ productPrices }}
+  </h3>
+
+  {% if c_type == 'pre-build-box' %}
+    <ul class="c-{{ tmpEl }}__bab-list">
+      {% assign boxJSON = product.metafields.custom_fields.pre-built_json | json_parse %}
+      {% assign boxVarJSON = boxJSON | last %}
+      {% for i in boxVarJSON.properties %}
+        {% assign f = i | first | split: '' | first %}
+        {% if f != '_' %}
+          <li class="c-{{ tmpEl }}__bab-list-item">
+            {{ i | first | capitalize }}
+            <i class="icon icon-close"></i>
+            {{ i | last }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% assign hide_default_title = false %}
+  {% if variantsDisplayed == 1 and product.variants.first.title contains
+  'Default' %}
+    {% assign hide_default_title = true %}
+  {% endif %}
+  {% if product.available and variantsDisplayed > 0 %}
+    <div class="c-{{ tmpEl }}__variants form-item{% if hide_default_title %} hidden{% endif %}" data-av="{{ variantsDisplayed }}">
+      <label>Size</label>
+      <select name="id">
+        {% for variant in product.variants %}
+          {%- capture success -%}
+            <option {% if variant == product.selected_or_first_available_variant %}selected{% endif %} value="{{ variant.id }}">
+              {% include 'variant-title' %} - {{ variant.price | money_with_currency }}
+            </option>
+          {%- endcapture -%}
+          {% include 'variant-location-validator', success: success %}
+        {% endfor %}
+      </select>
+    </div>
+  {% endif %}
+  <div class="c-{{ tmpEl }}__quantity form-item">
+    {% if c_type == 'pre-build-box' %}
+    {% elsif product.available and variantsDisplayed > 0 %}
+      <label>Quantity</label>
+      {% include 'quantity-field', static: true %}
+    {% else %}
+      <p class="h3 color-primary">Out of Stock</p>
+    {% endif %}
+  </div>
+{%- endcapture -%}
+
+{%- capture c_footer -%}
+  {% if product.available and variantsDisplayed > 0 %}
+    {% if c_type == 'pre-build-box' %}
+      <a class="b b--block b--submit">Add to Cart</a>
+    {% elsif settings.poc__enable and product.id == all_products[settings.poc__id].id %}
+      <a class="pre-order-add b b--block">Pre-Order</a>
+    {% else %}
+      <button class="b b--block" type="submit" name="add">Add to Cart</button>
+    {% endif %}
+  {% endif %}
+  {% unless c_type == 'pre-build-box' %}
+    <a class="b b--block b--outline" href="{{ tmpUrl }}">Full Details</a>
+  {% endunless %}
+{%- endcapture -%}
+
+
+<form action="{{ routes.cart_url }}/add" method="post" enctype="multipart/form-data" data-cart-submit>
+  {% include 'card',
+    c_modifier: '',
+    c_ribbon: false,
+    c_display: tmpEl,
+    c_image: c_image,
+    c_header: c_header,
+    c_header_el: 'h2',
+    c_header_modifier: 'color-primary',
+    c_copy: c_copy,
+    c_footer: c_footer,
+    c_attr: c_attr,
+    c_context: c_context
+  %}
+</form>

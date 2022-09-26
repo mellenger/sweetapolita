@@ -1,0 +1,53 @@
+<script type="text/javascript">
+	{% if template.name == "product" %}
+		var productSIHHandle = '{{ product.handle }}';
+	{% endif %}
+	var isCartPage = false;
+	{% if template.name == "cart" or template.name == "checkout" %}
+		isCartPage = true;
+	{% endif %}
+</script>
+{% include "second-image-on-hover-config" %}
+<script type="text/javascript">
+    function findAllProductsOverride(arguments) {
+    	jQuery = arguments[0];
+    	productsToFind = [];
+    	alreadyFindedProducts = [];
+    	jQuery('a[href]').each(function() {
+    		href = jQuery(this).attr('href');
+            productHandle = callFunctionSIOH('getProductHandle', [jQuery, href], true);
+    		if (typeof href !== 'undefined' && href !== false && href.indexOf('products/') !== -1 && !(alreadyFindedProducts.indexOf(productHandle) > -1) && !checkImg(productHandle) && !callFunctionSIOH('isAppended', [jQuery(this)], true) && !callFunctionSIOH('checkIfContainNotAllowedSubstrings', [href], true)) {
+                if (typeof productSIHHandle !== 'undefined') {
+                    if (productSIHHandle != productHandle) {
+                        productsToFind.push({'href': href,'handle': productHandle});
+                    }
+                } else {
+                    productsToFind.push({'href': href,'handle': productHandle});
+                }
+                alreadyFindedProducts.push(productHandle);
+            }
+    	});
+    
+        ajaxRequests = [];
+        ajaxProducts = [];
+    	jQuery.each(productsToFind, function(index, value) {
+    		ajaxRequests.push(jQuery.getJSON('/products/' + value.handle + '.js?app=secondImageOnHover')
+    		.done(function(product) {
+    			ajaxProducts.push(product);
+    		}));
+    	});
+    	jQuery.when.apply(jQuery, ajaxRequests).always(function(){
+    		jQuery.each(ajaxProducts, function(index, value) {
+    			jQuery('a[href]').each(function() {
+    				href = jQuery(this).attr('href');
+                    productHandle = callFunctionSIOH('getProductHandle', [jQuery, href], true);
+    				if (jQuery(this).parents('.product-grid__item').length > 0 && href.indexOf('products/') !== -1 && (productHandle == value.handle || productHandle == encodeURI(value.handle)) && !callFunctionSIOH('isAppended', [jQuery(this)], true)) {
+    					ajaxFindedProducts[value.id] = value;
+    					callFunctionSIOH('setAsAppended', [jQuery, jQuery(this), value], false);
+    					preloadImages(value);
+    				}
+    			});
+            });
+    	});
+    }
+</script>

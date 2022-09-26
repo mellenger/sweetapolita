@@ -1,0 +1,85 @@
+{%- assign variantsDisplayed = 0 -%}
+{% assign c_type = product.type | handleize %}
+{%- capture priceMin -%}
+  {%- for variant in product.variants -%}
+    {%- capture success -%}
+      {{- variant.price -}},
+    {%- endcapture -%}
+    {%- include 'variant-location-validator', success: success -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign priceMin = priceMin | split: ',' | sort: "price" | first | times: 1 -%}
+{% if priceMin == 0 %}
+  {%- assign priceMin = false %}
+{% endif %}
+
+{% include 'product-url' %}
+{% assign tmpUrl = productUrl %}
+{% if c_type == 'build-a-box' %}
+  {% assign babUrl = settings['bab-url'] %}
+  {% assign tmpUrl = babUrl %}
+  {% assign priceMin = settings['bab-from-price'] | times: 100 %}
+{% endif %}
+
+
+{%- capture c_attr -%}
+  data-pid="{{ product.id }}"
+  data-theme="{{ product.metafields.custom_fields.theme }}"
+  data-variants-visible="{{ variantsDisplayed }}"
+{%- endcapture -%}
+
+{%- capture c_ribbon -%}
+  {% include 'product-tags', product: product, %}
+{%- endcapture -%}
+
+{%- capture c_image -%}
+  <a href="{{ tmpUrl }}">
+    {% if c_type == 'pre-build-box' %}
+      {{ product.featured_image | img_url: '400x' | img_tag }}
+    {% else %}
+      {{ product.featured_image | img_url: '420x570', crop: 'center', format: 'jpg' | img_tag }}
+    {% endif %}
+  </a>
+{%- endcapture -%}
+
+{%- capture c_header -%}
+  <a href="{{ tmpUrl }}">{{ product.title }}</a>
+{%- endcapture -%}
+
+{%- capture c_copy -%}
+  {% if shop.domain contains '.com' %}
+    {% include 'yotpo__stars' %}
+  {% endif %}
+  {% if priceMin %}
+    {% if c_type != 'pre-build-box' and variantsDisplayed > 1 %}
+      From
+    {% endif %}
+    {{ priceMin | money_with_currency }}
+  {% endif %}
+{%- endcapture -%}
+
+{%- capture c_footer -%}
+  {% if c_type == 'build-a-box' %}
+    <a href="{{ tmpUrl }}" class="b b--block">Start Now</a>
+  {% else %}
+    <a class="b b--block">Quick Shop</a>
+  {% endif %}
+{%- endcapture -%}
+
+{% include 'card',
+  c_modifier: c_modifier,
+  c_type: c_type,
+  c_display: 'product',
+  c_image: c_image,
+  c_header: c_header,
+  c_header_el: 'h2',
+  c_copy: c_copy,
+  c_footer: c_footer,
+  c_attr: c_attr,
+  c_context: '',
+%}
+
+{% include 'product-quick-shop',
+  product: product,
+  parent_url: parent_url,
+%}

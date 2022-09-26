@@ -1,0 +1,68 @@
+{% assign el = 'gallery' %}
+
+{%- capture c_ribbon -%}
+  {% for block in section.blocks %}
+    {% if block.type == 'accent-image' and block.settings.image %}
+    <div class="c-{{ el }}__accent">
+      {{ block.settings.image | img_url: '600x' | img_tag }}
+    </div>
+    {% endif %}
+  {% endfor %}
+  {{ section.settings.header }}
+{%- endcapture -%}
+
+{%- capture c_image -%}
+  {% for block in section.blocks %}
+    {% if block.type == 'image' and block.settings.image %}
+      <div class="c-{{ el }}__image-item">
+        {{ block.settings.image | img_url: '1500x975', crop: 'center', format: 'jpg' | img_tag }}
+      </div>
+    {% endif %}
+  {% endfor %}
+{%- endcapture -%}
+
+{% include 'card',
+  c_context: c_context,
+  c_display: el,
+  c_ribbon: c_ribbon,
+  c_ribbon_el: 'h3',
+  c_image: c_image,
+%}
+
+
+{% schema %}
+  {
+    "name": "Gallery - Story",
+    "settings": [
+      {
+        "id": "header",
+        "type": "richtext",
+        "label": "Header"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      },
+      {
+        "type": "accent-image",
+        "name": "Accent image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

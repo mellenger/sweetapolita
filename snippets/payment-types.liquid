@@ -1,0 +1,29 @@
+{% assign el = 'payment-types' %}
+{%- capture items -%}
+payments_amex
+payments_apple-pay
+payments_discover
+payments_google-pay
+payments_mastercard
+payments_paypal
+payments_shopify-pay
+payments_diners-club
+payments_visa
+{%- endcapture -%}
+{% assign items = items | newline_to_br | split: '<br />' %}
+
+<div class="{{ el }}">
+  <div class="{{ el }}__inner">
+    <ul class="{{ el }}__list">
+      {%- for i in items -%}
+        {% assign x = i | strip %}
+        {% assign icon = x | split: 'payments_' %}
+        {% if settings[x] %}
+          <li class="{{ el }}__item">
+            {{ icon[1] | append: '.svg' | asset_url | img_tag }}
+          </li>
+        {%- endif -%}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

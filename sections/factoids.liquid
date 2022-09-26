@@ -1,0 +1,97 @@
+{% assign el = 'factoids' %}
+<div class="{{ el }}">
+  <h2 class="{{ el }}__header color-primary center outer-container">{{ section.settings.header }}</h2>
+  <div class="{{ el }}__inner">
+    {% for block in section.blocks %}
+      {%- capture c_image -%}
+        {%- if block.settings.image -%}
+          <a {% if block.settings.url %}href="{{ block.settings.url }}"{% endif %}>
+            {{ block.settings.image | img_url: 'x360' | img_tag  }}
+          </a>
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- capture c_copy -%}
+        <a class="color-{{ block.settings.theme }}" {% if block.settings.url
+          %}href="{{ block.settings.url }}" {% endif %}>
+          {{ block.settings.header }}
+        </a>
+      {%- endcapture -%}
+
+      {% include 'card',
+        c_display: 'factoid',
+        c_attr: c_attr,
+        c_image: c_image,
+        c_copy: c_copy,
+        c_copy_modifier: 'h3',
+        c_footer: block.settings.copy,
+        c_footer_modifier: 'color-grey-2',
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "settings": [
+      {
+        "id": "header",
+        "type": "text",
+        "label": "Header",
+        "default": "Why we’re awesome"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "factoid",
+        "name": "Factoid",
+        "settings": [
+          {
+            "id": "theme",
+            "type": "select",
+            "label": "Theme",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Default"
+              },
+              {
+                "value": "turquoise",
+                "label": "Turquoise"
+              },
+              {
+                "value": "lime",
+                "label": "Lime"
+              },
+              {
+                "value": "orange",
+                "label": "Orange"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "header",
+            "type": "richtext",
+            "label": "Header"
+          },
+          {
+            "id": "copy",
+            "type": "richtext",
+            "label": "Copy"
+          },
+          {
+            "id": "url",
+            "type": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

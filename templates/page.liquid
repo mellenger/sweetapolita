@@ -1,0 +1,14 @@
+{% capture c_copy %}
+  {{ page.content }}
+{% endcapture %}
+
+{% include 'card',
+  c_display: 'page',
+  c_modifier: 'copy-max',
+  c_header: page.title,
+  c_header_el: 'h1',
+  c_header_modifier: 'title-font color-primary center',
+  c_copy: c_copy,
+%}
+
+{% section 'factoids' %}

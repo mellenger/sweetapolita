@@ -1,0 +1,52 @@
+{% assign sEl = 'search' %}
+{% unless dispaly %}
+  {% assign display = 'default' %}
+{% endunless %}
+<form style="display:none;" class="{{ sEl }} {{ sEl }}--{{ display }} {{ modifier }} toggle-search close-menu" role="search" action="/search" method="get">
+  <div class="{{ sEl }}__inner">
+    <i class="icon icon-search"></i>
+    <input name="q" type="search" placeholder="Search" value="{{ search.terms | escape }}" class="hide-desktop" />
+  </div>
+</form>
+<div class="search-container" style="position:relative;">
+  <label for="Search" class="searchlabel">Search</label>
+  <input
+        id="Search"
+        class="predictive-search"
+        type="search"
+        name="q"
+        placeholder="Search"
+        value="{{ search.terms | escape }}"
+  >
+  <div class="util-area"></div>
+  <div class="crossicon">&#10540;</div>
+</div>
+{% render 'predictive-search.liquid' %}
+<style>
+  .search-container{display:block;}
+  .util-area{position:absolute;overflow:auto;max-height:80vh;top:56px;width:170%;background:white;padding:0px;box-shadow:0px 0px 10px #ebecf3;}
+  .grid__cell{display:flex;padding:14px;column-gap:14px;border-bottom:1px solid #ebecf3!important;}
+  .grid__cell:hover{background:#ebecf3!important;}
+  .grid__cell:hover span{text-decoration:underline;}
+  .util-area .products_box .pro_head{text-align:right;padding:10px 15px;}
+  .grid__cell span{padding:5px 0px;}
+  .search-container .crossicon{display:none;}
+  #header__inner .searchlabel{display:none;}
+  .grid__cell img{aspect-ratio: 1;overflow: hidden;min-height:50px;min-width:50px;object-fit: cover;object-position: center;}
+    @media all and (max-width:990px){
+      .search-container{display:none;}
+    #header__mobile{display:flex;flex-wrap:wrap;}
+    #header__mobile .hamburger{margin-right:auto;position:relative!important;width:48px;}
+    #header__mobile .predictive-search{padding:10px 10px 10px 30px;display:block;z-index:99999;position:relative;width:100%;top:0px;left:0%;}
+    #header__mobile .show-search{display:block!important;}
+    #header__mobile .util-area{width:100%;top:40px;}
+    #header__mobile .mobile-search-container{right:0px;max-width:24px;max-height:24px;}
+    #header__mobile .mobile-search-container:after{font-size:30px;position:absolute;content:'\260C';display:block;top:50%;left:50%;transform:translate(-50%,-50%) rotate(105deg);}
+    #header__mobile .search-container{width:100%;margin-top:1rem;display:none;}
+    #header__mobile .search-container .searchlabel{display:none;}
+    #header__mobile .search-container:before{cursor:pointer;content:'\260C';display:block;font-size:30px;position:absolute;left:10px;top:50%;transform:translateY(-50%) rotate(105deg);z-index:9999999999;}
+    #header__mobile .crossicon{cursor:pointer;width:38px;display:flex;align-items:center;justify-content:center;pointer;z-index: 99999;position:absolute;font-size:24px;right:00px;top:50%;transform:translateY(-50%);}
+    }
+
+</style>
+   

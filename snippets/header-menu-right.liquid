@@ -1,0 +1,43 @@
+{% assign el = 'header-menu-right' %}
+{% if shop.url contains '.ca' %}
+  {% assign canadianStore = true %}
+{% else %}
+  {% assign canadianStore = false %}
+{% endif %}
+
+<div class="{{ el }} {{ el }}--{{ display }}">
+  <div class="{{ el }}__inner">
+    <ul class="{{ el }}__items">
+      <li class="{{ el }}__item {{ el }}__item--country">
+        <!-- TODO: Go live when currency switcher ready -->
+        <!-- {% include 'currency-switcher-legacy' %} -->
+        {% include 'currency-switcher' %}
+      </li>
+      {% if shop.customer_accounts_enabled %}
+        <li class="{{ el }}__item {{ el }}__item--login">
+          {% if customer %}
+            <a href="{% include 'route-url', url: 'account' %}">
+              <i class="icon icon-smile"></i>
+              <span>{{ customer.name | split: ' ' | slice: 0,1 }}</span>
+            </a>
+          {% else %}
+            <a href="{% include 'route-url', url: 'account/login' %}" title="Login">
+              <i class="icon icon-smile"></i>
+              <span>Login</span>
+            </a>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if customer %}
+        <li class="{{ el }}__item {{ el }}__item--smile-rewards smile-rewards-hide">
+          <a href="{% include 'route-url', url: 'account' %}" class="icon icon-present smile-rewards-count"></a>
+        </li>
+      {% endif %}
+      <li class="{{ el }}__item {{ el }}__item--cart toggle-cart" data-cart-view>
+        <a href="{{ routes.cart_url }}" class="icon icon-bag">
+          <span rv-if="cart.item_count | gt 0" rv-html="cart.item_count | itemCountWithoutBab"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

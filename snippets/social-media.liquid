@@ -1,0 +1,30 @@
+{%- capture items -%}
+social_tw
+social_fb
+social_pi
+social_in
+{%- endcapture -%}
+{% assign items = items | newline_to_br | split: '<br />' %}
+
+{% assign el = 'social-media' %}
+<div class="{{ el }}">
+  <div class="{{ el }}__inner">
+    <p class="{{ el }}__header">Join the Sweet Community</p>
+    <ul class="{{ el }}__list">
+      {%- for i in items -%}
+        {% assign x = i | strip %}
+        {% assign icon = x | split: 'social_' %}
+
+        {% if settings[x] %}
+          <li><a href="{{ settings[x] }}" target="_blank" class="icon icon-{{ icon }}"></a></li>
+        {% endif %}
+      {%- endfor -%}
+    </ul>
+    <div class="{{ el }}__footer">
+      <a href="{{ settings.contact_page }}">Contact Us</a>
+      <br />
+      <p><a href="tel:1-888-858-8722">1-888-858-8722</a></p>
+      <p><a href="mailto:info@sweetapolita.com">info@sweetapolita.com</a></p>
+    </div>
+  </div>
+</div>

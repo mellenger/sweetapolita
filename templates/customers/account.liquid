@@ -1,0 +1,77 @@
+{%- capture c_attr -%}
+  data-theme="blue-light"
+{%- endcapture -%}
+{% assign c_header = 'Hi ' | append: customer.name | split: ' ' | slice: 0,2 | join: ' ' %}
+{% capture c_copy %}
+  <h2>Orders</h2>
+  {% paginate customer.orders by 10 %}
+    {% if customer.orders.size != 0 %}
+      {% assign subEl = 'orders' %}
+      <table role="table" class="{{ subEl }}">
+        <thead role="rowgroup">
+          <tr role="row" class="{{ subEl }}__row">
+            <th>{{ 'customer.orders.order_number' | t }}</th>
+            <th>{{ 'customer.orders.date' | t }}</th>
+            <th>{{ 'customer.orders.payment_status' | t }}</th>
+            <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+            <th>{{ 'customer.orders.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          {%- for order in customer.orders -%}
+            <tr role="row" class="{{ subEl }}__row">
+              <td role="cell">
+                <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                  {{ order.name }}
+                </a>
+              </td>
+              <td role="cell">
+                {{ order.created_at | time_tag: format: 'date' }}
+              </td>
+              <td role="cell">
+                {{ order.financial_status_label }}
+              </td>
+              <td role="cell">
+                {{ order.fulfillment_status_label }}
+              </td>
+              <td role="cell">
+                {{ order.total_price | money_with_currency }}
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    {% else %}
+      <p>You haven't placed any orders yet.</p>
+    {% endif %}
+    {{ paginate | default_pagination }}
+  {% endpaginate %}
+
+  {% if customer.default_address %}
+    <hr />
+    <h2>Address</h2>
+    <p>{{ customer.default_address.address1 }}</p>
+    {% if customer.default_address.address2 != "" %}
+      <p>{{ customer.default_address.address2 }}</p>
+    {% endif %}
+    <p>{{ customer.default_address.city}}, {% if address.province_code %}{{ customer.default_address.province_code }}, {% endif %}{{ customer.default_address.country }}</p>
+    <p>{{ customer.default_address.zip }}</p>
+    <p>{{ customer.default_address.phone }}</p>
+  {% endif %}
+{% endcapture %}
+{% capture c_footer %}
+  <a class="b" href="{{ routes.root_url }}account/logout">Logout</a>
+{% endcapture %}
+
+{% include 'card',
+  c_attr: c_attr,
+  c_display: 'page',
+  c_modifier: 'form-max',
+  c_header: c_header,
+  c_header_el: 'h1',
+  c_header_modifier: 'title-font color-blue-light center',
+  c_copy: c_copy,
+  c_footer: c_footer,
+%}
+
+{% section 'factoids' %}

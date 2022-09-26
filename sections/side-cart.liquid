@@ -1,0 +1,54 @@
+{% assign el = 'side-cart' %}
+<div class="{{ el }}" data-cart-view>
+  <div class="{{ el }}__inner">
+    <div class="{{ el }}__header h4 title-font">
+      {{ section.settings.title }}
+      <a class="icon icon-close icon--grey-3 toggle-cart" href="#"></a>
+      {% if section.settings.subtitle %}
+        <p class="{{ el }}__header-subtitle color-grey-3">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+    <div class="{{ el }}__copy">
+        <p class="no-items-message" rv-unless="cart.item_count | gt 0">{{ cart.general.empty | default: 'There are no items in your cart.' }}</p>
+
+        <div class="{{ el }}__copy-item" rv-each-item="cart.items">
+          <div rv-unless="item.properties._hide | present">
+            {% include 'cart-item' %}
+          </div>
+        </div>
+    </div>
+    <div class="{{ el }}__footer">
+      <div class="{{ el }}__footer-subtotal">
+        <div class="{{ el }}__footer-subtotal-title">Subtotal</div>
+        <div class="{{ el }}__footer-subtotal-price" rv-html="cart.total_price | money_with_currency"></div>
+      </div>
+      <a class="b b--block" href="{{ routes.cart_url }}">{{ section.settings.button_title }}</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Side Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Header title",
+      "default": "Shopping Cart"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Header subtitle",
+      "default": "Free shipping on orders over $75"
+    },
+    {
+      "type": "text",
+      "id": "button_title",
+      "label": "Button title",
+      "default": "Checkout"
+    }
+  ]
+}
+{% endschema %}

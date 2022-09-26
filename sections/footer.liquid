@@ -1,0 +1,46 @@
+<footer id="footer">
+  <div id="footer__inner" class="outer-container">
+    <div class="footer__col">
+      {% assign menu = linklists[section.settings.footer_menu] %}
+      {% include 'menu', menu: menu, name: section.settings.footer_menu %}
+    </div>
+    <div class="footer__col">
+      {% include 'branding', display: 'circle' %}
+      <i id="footer__heart" class="icon icon-heart"></i>
+      <p id="footer__slogan">{{ section.settings.footer_slogan | default: 'Female Founded in 2015' }}</p>
+      {% include 'signup-form', title: section.settings.footer_signup_title %}
+    </div>
+    <div class="footer__col">
+      {% include 'social-media' %}
+      {% include 'payment-types' %}
+    </div>
+  </div>
+  <div id="footer__copyright" class="footer__copyright color-grey-3 outer-container">
+    <span class="footer__copyright-item">Copyright &copy; {{ 'now' | date: "%Y" }} Sweetapolita Inc.</span>
+    <a class="footer__copyright-item" href="{% include 'route-url', url: 'policies/privacy-policy' %}">Privacy Policy</a>
+    <a class="footer__copyright-item" href="{% include 'route-url', url: 'policies/terms-of-service' %}">Terms of Service</a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu"
+    },
+    {
+      "type": "text",
+      "id": "footer_slogan",
+      "label": "Footer Slogan"
+    },
+    {
+      "type": "text",
+      "id": "footer_signup_title",
+      "label": "Footer Signup Form Title"
+    }
+  ]
+}
+{% endschema %}

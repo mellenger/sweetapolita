@@ -1,0 +1,83 @@
+<div data-theme="orange">
+  {% assign el = 'cart' %}
+  <form class="{{ el }}" data-cart-view action="{{ routes.cart_url }}" method="post">
+    <div class="{{ el }}__inner">
+      <div rv-unless="cart.item_count | gt 0">
+        <h1 class="h3 title-font center color-primary">{{ section.settings.empty-title}}</h1>
+        <div class="center color-grey-3">{{ section.settings.empty-copy }}</div>
+      </div>
+      <div rv-if="cart.item_count | gt 0">
+        <h1 class="{{ el }}__header h3 color-primary title-font center">{{ section.settings.header }}</h1>
+        <div class="{{ el }}__subtitle h4 color-grey-3 center">{{ section.settings.subtitle }}</div>
+        <div class="{{ el }}__copy">
+          <div class="{{ el }}__copy-item {{ el }}__copy-item--empty center color-grey-3" rv-unless="cart.item_count | gt 0">{{ section.settings.empty-copy }}</div>
+
+          <div class="{{ el }}__copy-item" rv-each-item="cart.items">
+            <div rv-unless="item.properties._hide | present">
+            {% include 'cart-item' %}
+            </div>
+          </div>
+        </div>
+        <div class="{{ el }}__footer">
+          <div class="{{ el }}__footer-subtotal right">
+            <div class="{{ el }}__footer-subtotal-title h4 title-font color-primary">
+              Subtotal
+              <span class="{{ el }}__footer-subtotal-price" rv-html="cart.total_price | money_with_currency"></span>
+            </div>
+          </div>
+          <div class="{{ el }}__footer-additional">
+            <div class="form-item">
+              <label>Special instructions for seller</label>
+              <textarea name="note" placeholder="Your message">{{ cart.note }}</textarea>
+            </div>
+          </div>
+          <div class="{{ el }}__footer-actions">
+            <input class="b float-right" type="submit" name="checkout" value="Check out" />
+            {% if additional_checkout_buttons %}
+              {{ content_for_additional_checkout_buttons }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% if shop.url contains '.ca' %}
+  {% include "creativer-store-pickup_v1_3" %}
+{% endif %}
+
+{% schema %}
+  {
+    "settings": [
+      {
+        "id": "header",
+        "type": "text",
+        "label": "Header",
+        "default": "Shopping Cart"
+      },
+      {
+        "id": "subtitle",
+        "type": "richtext",
+        "label": "Subtitle",
+        "default": "<p>Free shipping on orders over $75</p>"
+      },
+      {
+        "type": "header",
+        "content": "Empty cart"
+      },
+      {
+        "id": "empty-title",
+        "type": "richtext",
+        "label": "Empty title",
+        "default": "<p>Your cart is empty</p>"
+      },
+      {
+        "id": "empty-copy",
+        "type": "richtext",
+        "label": "Empty title",
+        "default": "<p>Your cart is empty. You can continue browsing <a href=\"/collections/all\">here</a>.</p>"
+      }
+    ]
+  }
+{% endschema %}

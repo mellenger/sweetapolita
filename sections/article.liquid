@@ -1,0 +1,39 @@
+{% assign blogHandle = article.url | split: '/' | slice: 2, 1 | first %}
+{% assign currentBlog = blogs[blogHandle] %}
+{%- capture articleImage -%}
+  {{ article.image | img_url: '1200x', crop: 'center', format: 'jpg' | img_tag }}
+{%- endcapture -%}
+
+{% assign el = 'article' %}
+<div class="{{ el }}">
+  <a class="{{ el }}__back icon icon-arrow-left" href="{{ currentBlog.url }}">All Recipes</a>
+  <div class="{{ el }}__inner">
+    <div class="{{ el }}__ribbon"><a href="{{ currentBlog.url }}#/{{ article.tags[0] }}">{{ article.tags[0] }}</a></div>
+    <h1 class="{{ el }}__header h3 title-font color-primary">{{ article.title }}</h1>
+    <!-- <div class="{{ el }}__subheader">{{ article.created_at | time_tag: format: 'date' }}</div> -->
+    <div class="{{ el }}__content">
+      {% if articleImage != blank %}
+        <!-- <div class="{{ el }}__image">{{ articleImage }}</div> -->
+      {% endif %}
+      <div class="{{ el }}__copy">
+        {{ article.content | replace: 'https://sweetapolita.com/wp-content/uploads/', 'https://sp-blog-images.nyc3.cdn.digitaloceanspaces.com/' }}
+      </div>
+      <div class="{{ el }}__signature">{{ 'RosieSignature.svg' | asset_url | img_tag }}</div>
+      {% include 'share-links',
+        title: article.title,
+        url: article.url,
+      %}
+    </div>
+  </div>
+</div>
+{{ el | append: '.css' | asset_url | stylesheet_tag }}
+{{ el | append: '.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "settings": [],
+  "presets": []
+}
+{% endschema %}

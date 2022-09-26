@@ -1,0 +1,66 @@
+{%- capture c_attr -%}
+  data-theme="blue-light"
+{%- endcapture -%}
+{% capture c_copy %}
+  <p>New to Sweetapolita? <a href="/account/register" class="b b--caps">Sign Up</a></p>
+  {% assign fEl = 'form-accordion' %}
+  <div class="{{ fEl }}" id="login">
+    <h2 class="{{ fEl }}__header">Login</h2>
+    <div class="{{ fEl }}__content">
+      {% form 'customer_login' %}
+        <!-- <h2 class="color-blue-light">Login</h2> -->
+        {{ form.errors | default_errors }}
+        <div class="form-item">
+          <label for="customer_email">Email Address</label>
+          <input type="email" name="customer[email]" />
+        </div>
+        <div class="form-item">
+          <label for="customer_password">Password</label>
+          <input type="password" name="customer[password]" />
+        </div>
+        <input class="b b--block" type="submit" value="Log In" />
+      {% endform %}
+    </div>
+  </div>
+  <div class="{{ fEl }}" id="forgot-password">
+    <h2 class="{{ fEl }}__header">Activate Account</h2>
+    <div class="{{ fEl }}__content">
+      <p class="em">Hey Canadians friends! Thank you for your patience while we transition to sweetapolita.com. Please enter your email and check your mailbox for the next step.</p>
+
+      <form id="activate-account-app">
+        <div class="form-item">
+          <label for="customer_email">Email Address</label>
+          <input type="email" name="email" />
+        </div>
+        <input class="b b--block" type="submit" value="Activate Account" />
+      </form>
+    </div>
+  </div>
+  <div class="{{ fEl }}" id="forgot-password-new">
+    <h2 class="{{ fEl }}__header">Forgot Password</h2>
+    <div class="{{ fEl }}__content">
+      {% form 'recover_customer_password' %}
+        <!-- <h2 class="color-blue-light center">Forgot Password</h2> -->
+        {{ form.errors | default_errors }}
+        <div class="form-item">
+          <label for="customer_email">Email Address</label>
+          <input type="email" name="email" />
+        </div>
+
+        <input class="b b--block" type="submit" value="Submit" />
+      {% endform %}
+    </div>
+  </div>
+{% endcapture %}
+
+{% include 'card',
+  c_attr: c_attr,
+  c_display: 'page',
+  c_modifier: 'form-max',
+  c_header: 'Login',
+  c_header_el: 'h1',
+  c_header_modifier: 'title-font color-blue-light center',
+  c_copy: c_copy,
+%}
+
+{% section 'factoids' %}

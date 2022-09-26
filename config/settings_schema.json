@@ -1,0 +1,194 @@
+[
+  {
+    "name": "General",
+    "settings": [
+      {
+        "type": "url",
+        "id": "contact_page",
+        "label": "Contact Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "checkout_customization",
+        "label": "Enables a checkout customization",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Branding",
+    "settings": [
+      {
+        "type": "image",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image",
+        "id": "logo_circle",
+        "label": "Logo - circle"
+      },
+      {
+        "type": "text",
+        "id": "slogan",
+        "label": "Slogan"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_tw",
+        "label": "Twitter"
+      },
+      {
+        "type": "url",
+        "id": "social_fb",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "social_pi",
+        "label": "Pintrest"
+      },
+      {
+        "type": "url",
+        "id": "social_in",
+        "label": "Instagram"
+      }
+    ]
+  },
+  {
+    "name": "Product attributes",
+    "settings": [
+      {
+        "id": "p-attr__vegan",
+        "type": "collection",
+        "label": "Vegan collection"
+      },
+      {
+        "id": "p-attr__vegetarian",
+        "type": "collection",
+        "label": "Vegetarian collection"
+      },
+      {
+        "id": "p-attr__gluten_free",
+        "type": "collection",
+        "label": "Gluten free collection"
+      },
+      {
+        "id": "p-attr__kosher",
+        "type": "collection",
+        "label": "Kosher collection"
+      },
+      {
+        "id": "p-attr__dairy_free",
+        "type": "collection",
+        "label": "Dairy free collection"
+      },
+      {
+        "id": "p-attr__dairy_kosher",
+        "type": "collection",
+        "label": "Dairy kosher collection"
+      }
+    ]
+  },
+  {
+    "name": "Payments",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "payments_amex",
+        "label": "Amex"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_apple-pay",
+        "label": "Apple Pay"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_diners-club",
+        "label": "Diners Club"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_discover",
+        "label": "Discover"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_google-pay",
+        "label": "Google Pay"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_mastercard",
+        "label": "Mastercard"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_paypal",
+        "label": "PayPal"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_shopify-pay",
+        "label": "Shopify Pay"
+      },
+      {
+        "type": "checkbox",
+        "id": "payments_visa",
+        "label": "Visa"
+      }
+    ]
+  },
+  {
+    "name": "Pre-Order Calendar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "poc__enable",
+        "label": "Enable pre-order calendar"
+      },
+      {
+        "type": "product",
+        "id": "poc__id",
+        "label": "Pre-order calendar product"
+      },
+      {
+        "type": "richtext",
+        "id": "poc__confirmation",
+        "label": "Confirmation text"
+      },
+      {
+        "type": "richtext",
+        "id": "poc__ribbon",
+        "label": "Dynamic cart alert"
+      }
+    ]
+  },
+  {
+    "name": "Build a Box",
+    "settings": [
+      {
+        "type": "product",
+        "id": "bab-product",
+        "label": "Build a Box Product"
+      },
+      {
+        "type": "url",
+        "id": "bab-url",
+        "label": "Build a Box URL"
+      },
+      {
+        "type": "number",
+        "id": "bab-from-price",
+        "label": "Build a Box \"From\" Price",
+        "default": 36
+      }
+    ]
+  }
+]

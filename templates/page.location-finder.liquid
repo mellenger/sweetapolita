@@ -1,0 +1,43 @@
+{% assign el = 'where-to-buy' %}
+{% capture c_copy %}
+  {% comment %} {{ page.content }} {% endcomment %}
+
+<div class="{{ el }}">
+  <div class="{{ el }}__address-container">
+    <p class="{{ el }}__autocomplete-cta">Start typing your address to find the nearest stores.</p>
+    <div class="{{ el }}__autocomplete-container">
+      <input id="{{ el }}__autocomplete" placeholder="Enter an address" type="text" />
+      <button id="{{ el }}__location-button"></button>
+    </div>
+    <p class="{{ el }}__autocomplete-info">Here are the closest stores and online shops that ships to your location.</p>
+  </div>
+  <div class="{{ el }}__map-container">
+    <div id="{{ el }}__map"></div>
+  </div>
+
+</div>
+
+{% endcapture %}
+
+{% include 'card',
+  c_display: 'page',
+  c_modifier: 'copy-max',
+  c_header: page.title,
+  c_header_el: 'h1',
+  c_header_modifier: 'title-font color-primary center',
+  c_copy: c_copy,
+%}
+
+{% section 'factoids' %}
+
+
+{{ 'where-to-buy.js' | asset_url | script_tag }}
+
+{% comment %}
+TODO update api key to a Mellenger one (currently using Fabricio's)
+{% endcomment %}
+{% assign mapsAPIKey = 'AIzaSyBRsnSBnuHuaNQAIIdAJJq1wbjSLL79B0k' %}
+{% assign mapsBaseURL = 'https://maps.googleapis.com/maps/api/js?callback=initMaps&libraries=places&key=' %}
+
+
+<script src="{{mapsBaseURL | append: mapsAPIKey}}" async></script>

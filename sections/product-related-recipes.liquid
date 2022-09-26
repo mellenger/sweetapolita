@@ -1,0 +1,50 @@
+{% assign el = 'product-related-recipes' %}
+<div class="{{ el }}">
+  <div class="{{ el }}__inner">
+    <!-- <h4 class="{{ el }}__header">Recipes</h4> -->
+    {% comment %} <div class="{{ el }}__items"> {% endcomment %}
+    {% assign relatedRecipes = '' %}
+    {% assign relatedRecipeCount = 0 %}
+    {% assign desiredRelatedRecipeCount = 3 %}
+    {% for article in blogs.recipe.articles limit:20 %}
+      {% for t in article.tags %}
+        {% if product.tags contains t and relatedRecipeCount < desiredRelatedRecipeCount %}
+          {% capture recipeImage %}
+            {{ article.image.src | img_url: '386x268', crop: 'center', format: 'jpg' | img_tag }}
+          {% endcapture %}
+          {% capture post %}
+            {% assign itemClass = 'product-related-recipes__item' %}
+            <a href="{{ article.url }}">
+              <div class="{{ itemClass }}">
+                <div class="{{ itemClass }}-image">
+                  {{ recipeImage }}
+                </div>
+                <div class="{{ itemClass }}-tags">
+                  {% if article.metafields.custom_fields["recipe_difficulty"] != blank %}
+                    {% assign difficulty = article.metafields.custom_fields["recipe_difficulty"] %}
+                    {% assign difficultyClass = difficulty | downcase %}
+                    <span class="{{ itemClass }}-tag {{ itemClass }}-tag--difficulty {{ itemClass }}-tag--{{ difficultyClass }}">{{ difficulty }}</span>
+                  {% endif %}
+
+                  {% if article.metafields.custom_fields["recipe_duration"] != blank %}
+                    <span class="{{ itemClass }}-tag {{ itemClass }}-tag--duration">{{ article.metafields.custom_fields["recipe_duration"] }}</span>
+                  {% endif %}
+                </div>
+                <h3 class="{{ itemClass }}-header color-primary">{{ article.title }}</h3>
+              </div>
+            </a>
+          {% endcapture %}
+          {% assign relatedRecipes = relatedRecipes | append: post %}
+          {% assign relatedRecipeCount = relatedRecipeCount | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+
+    {% if relatedRecipes.size > 0 %}
+      <div class="{{ el }}__items">{{ relatedRecipes }}</div>
+    {% else %}
+      <div class="{{ el }}__empty">No related recipes.</div>
+    {% endif %}
+    {% comment %} </div> {% endcomment %}
+  </div>
+</div>
